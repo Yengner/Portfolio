@@ -1,0 +1,260 @@
+"use client";
+
+import type { CSSProperties } from "react";
+import HeroNameParticlesR3F from "./HeroNameParticleR3F";
+import Nav from "./Nav";
+
+const topLinks = [
+    { href: "#hero", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#capabilities", label: "Capabilities" },
+    { href: "#contact", label: "Contact" },
+];
+
+const TOP_NAV_STYLE: CSSProperties = {
+    position: "absolute",
+    top: "2.5rem",
+    left: "50%",
+    transform: "translate(-50%, -12px)",
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    gap: "1.8rem",
+    padding: "0.65rem 1.6rem",
+    borderRadius: 999,
+    background: "rgba(9, 17, 36, 0.78)",
+    border: "1px solid rgba(148, 197, 255, 0.35)",
+    boxShadow: "0 24px 60px rgba(8, 16, 36, 0.45)",
+    backdropFilter: "blur(10px)",
+    opacity: 0,
+    animation: "nav-fade 1.9s ease 1.2s forwards",
+    zIndex: 5,
+};
+
+const TOP_NAV_LINK_STYLE: CSSProperties = {
+    color: "rgba(219, 234, 254, 0.82)",
+    fontSize: "0.85rem",
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    textDecoration: "none",
+    transition: "color 0.25s ease",
+};
+
+export default function HeroClient() {
+    return (
+        <section
+            id="hero"
+            style={{
+                position: "relative",
+                width: "100%",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "clamp(5rem, 11vw, 9rem) 1.5rem",
+                gap: "clamp(1.4rem, 2.8vw, 2.6rem)",
+                color: "#e8f0ff",
+                textAlign: "center",
+                zIndex: 1,
+            }}
+        >
+            <style>{`
+                @keyframes nav-fade { 0% { opacity: 0; transform: translate(-50%, -12px); } 100% { opacity: 1; transform: translate(-50%, 0); } }
+                @keyframes hero-belt { 0% { opacity: 0; transform: translateY(16px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+                @keyframes hero-cta { 0% { opacity: 0; transform: translateY(18px); } 100% { opacity: 1; transform: translateY(0); } }
+                .hero-nav a:hover { color: #ffffff; }
+            `}</style>
+            <Nav />
+
+
+            <div
+                style={{
+                    position: "relative",
+                    width: "min(92vw, 1180px)",
+                    height: "clamp(260px, 44vw, 520px)",
+                    marginTop: "-12vh",
+                }}
+            >
+                <HeroNameParticlesR3F
+                    textScale={0.0102}
+                    count={26000}
+                    bgScatterRadius={125}
+                    revealDelayMs={820}
+                    revealDurationMs={3700}
+                    freeWanderAmp={0.18}
+                    freeWanderSpeed={0.22}
+                    color="#7C717E"
+                />
+            </div>
+
+            <div
+                style={{
+                    marginTop: "-15rem",
+                    padding: "0.85rem 1.6rem 0.85rem 1.2rem",
+                    background: "transparent",        // ⬅️ no fill
+                    boxShadow: "none",                 // optional
+                    backdropFilter: "none",            // optional (blur won’t show with fully transparent bg)
+                    color: "#7C717E",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    fontSize: "0.8rem",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.65rem",
+                    opacity: 0,
+                    animation: "hero-belt 1.6s ease 4.6s forwards",
+                }}
+            >
+                {[
+                    "Software Engineer",
+                    "Student",
+                    "Backend Development",
+                    "Cloud Operations",
+                ].map((label, idx, arr) => (
+                    <span key={label} style={{ display: "inline-flex", alignItems: "center", gap: "0.65rem" }}>
+                        {idx === 0 && (
+                            <span
+                                style={{
+                                    display: "inline-flex",
+                                    width: 8,
+                                    height: 8,
+                                    borderRadius: "50%",
+                                    background: "#38bdf8",
+                                    boxShadow: "0 0 12px rgba(56, 189, 248, 0.75)",
+                                }}
+                                aria-hidden="true"
+                            />
+                        )}
+                        <span style={{ whiteSpace: "nowrap" }}>{label}</span>
+                        {idx < arr.length - 1 && (
+                            <span
+                                aria-hidden="true"
+                                style={{ color: "rgba(164, 210, 255, 0.4)", fontWeight: 600 }}
+                            >
+                                /
+                            </span>
+                        )}
+                    </span>
+                ))}
+            </div>
+            {/* 
+            <p
+                style={{
+                    margin: "0 auto",
+                    maxWidth: "640px",
+                    color: "rgba(227, 235, 255, 0.86)",
+                    fontSize: "clamp(1.05rem, 2.2vw, 1.35rem)",
+                    lineHeight: 1.65,
+                    textShadow: "0 10px 32px rgba(15, 23, 42, 0.55)",
+                }}
+            >
+                Crafting interactive front-end experiences with React, TypeScript, and cinematic particle systems.
+            </p> */}
+
+            <div
+                style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "0.9rem",
+                    justifyContent: "center",
+                    marginTop: "0.5rem",
+                }}
+            >
+                <a
+                    href="/resume.pdf"
+                    style={{
+                        padding: "0.75rem 1.9rem",
+                        borderRadius: 999,
+                        background: "linear-gradient(120deg, #667bff, #22d3ee)",
+                        color: "#061024",
+                        fontWeight: 600,
+                        textDecoration: "none",
+                        boxShadow: "0 20px 40px rgba(34, 211, 238, 0.35)",
+                        opacity: 0,
+                        animation: "hero-cta 1.4s ease 4.4s forwards",
+                    }}
+                >
+                    View résumé
+                </a>
+                <a
+                    href="#projects"
+                    style={{
+                        padding: "0.75rem 1.9rem",
+                        borderRadius: 999,
+                        border: "1px solid rgba(102, 212, 255, 0.45)",
+                        color: "rgba(212, 232, 255, 0.9)",
+                        fontWeight: 500,
+                        textDecoration: "none",
+                        backdropFilter: "blur(6px)",
+                        background: "rgba(9, 17, 36, 0.42)",
+                        opacity: 0,
+                        animation: "hero-cta 1.4s ease 4.6s forwards",
+                    }}
+                >
+                    Projects
+                </a>
+            </div>
+
+            <div
+                style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    gap: "1.6rem",
+                    marginTop: "20.4rem",
+                }}
+            >
+                {[
+                    { label: "Years experience", value: "700+" },
+                    { label: "Projects shipped", value: "3599" },
+                    { label: "Favorite stack", value: "React" },
+                ].map((item) => (
+                    <div
+                        key={item.label}
+                        style={{
+                            minWidth: 180,
+                            padding: "1rem 1.4rem",
+                            borderRadius: 18,
+                            background: "rgba(9, 17, 36, 0.42)",
+                            border: "1px solid rgba(88, 164, 255, 0.25)",
+                            boxShadow: "0 18px 45px rgba(12, 23, 46, 0.42)",
+                            backdropFilter: "blur(8px)",
+                        }}
+                    >
+                        <div style={{ fontSize: "2rem", fontWeight: 700, color: "#a3bcff" }}>{item.value}</div>
+                        <div style={{ fontSize: "0.9rem", color: "rgba(201, 220, 255, 0.7)" }}>{item.label}</div>
+                    </div>
+                ))}
+            </div>
+
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "0.6rem",
+                    flexWrap: "wrap",
+                    marginTop: "2.6rem",
+                    color: "rgba(168, 208, 255, 0.78)",
+                    fontSize: "0.85rem",
+                    letterSpacing: "0.06em",
+                }}
+            >
+                {["JavaScript", "TypeScript", "Three.js", "React", "Mantine", "tsparticles"].map((tag) => (
+                    <span
+                        key={tag}
+                        style={{
+                            border: "1px solid rgba(86, 196, 255, 0.35)",
+                            padding: "0.5rem 0.95rem",
+                            borderRadius: 999,
+                            background: "rgba(9, 17, 36, 0.42)",
+                            boxShadow: "0 15px 36px rgba(12, 23, 46, 0.35)",
+                        }}
+                    >
+                        {tag}
+                    </span>
+                ))}
+            </div>
+        </section>
+    );
+}
