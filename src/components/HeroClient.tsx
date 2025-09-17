@@ -73,7 +73,7 @@ export default function HeroClient() {
                     position: "relative",
                     width: "min(92vw, 1180px)",
                     height: "clamp(260px, 44vw, 520px)",
-                    marginTop: "-12vh",
+                    marginTop: "-15vh",
                 }}
             >
                 <HeroNameParticlesR3F
@@ -92,9 +92,9 @@ export default function HeroClient() {
                 style={{
                     marginTop: "-15rem",
                     padding: "0.85rem 1.6rem 0.85rem 1.2rem",
-                    background: "transparent",        // ⬅️ no fill
-                    boxShadow: "none",                 // optional
-                    backdropFilter: "none",            // optional (blur won’t show with fully transparent bg)
+                    background: "transparent",
+                    boxShadow: "none",
+                    backdropFilter: "none",
                     color: "#7C717E",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
@@ -130,7 +130,7 @@ export default function HeroClient() {
                         {idx < arr.length - 1 && (
                             <span
                                 aria-hidden="true"
-                                style={{ color: "rgba(164, 210, 255, 0.4)", fontWeight: 600 }}
+                                style={{ fontWeight: 600 }}
                             >
                                 /
                             </span>
@@ -196,65 +196,7 @@ export default function HeroClient() {
                 </a>
             </div>
 
-            <div
-                style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
-                    gap: "1.6rem",
-                    marginTop: "20.4rem",
-                }}
-            >
-                {[
-                    { label: "Years experience", value: "700+" },
-                    { label: "Projects shipped", value: "3599" },
-                    { label: "Favorite stack", value: "React" },
-                ].map((item) => (
-                    <div
-                        key={item.label}
-                        style={{
-                            minWidth: 180,
-                            padding: "1rem 1.4rem",
-                            borderRadius: 18,
-                            background: "rgba(9, 17, 36, 0.42)",
-                            border: "1px solid rgba(88, 164, 255, 0.25)",
-                            boxShadow: "0 18px 45px rgba(12, 23, 46, 0.42)",
-                            backdropFilter: "blur(8px)",
-                        }}
-                    >
-                        <div style={{ fontSize: "2rem", fontWeight: 700, color: "#a3bcff" }}>{item.value}</div>
-                        <div style={{ fontSize: "0.9rem", color: "rgba(201, 220, 255, 0.7)" }}>{item.label}</div>
-                    </div>
-                ))}
-            </div>
 
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "0.6rem",
-                    flexWrap: "wrap",
-                    marginTop: "2.6rem",
-                    color: "rgba(168, 208, 255, 0.78)",
-                    fontSize: "0.85rem",
-                    letterSpacing: "0.06em",
-                }}
-            >
-                {["JavaScript", "TypeScript", "Three.js", "React", "Mantine", "tsparticles"].map((tag) => (
-                    <span
-                        key={tag}
-                        style={{
-                            border: "1px solid rgba(86, 196, 255, 0.35)",
-                            padding: "0.5rem 0.95rem",
-                            borderRadius: 999,
-                            background: "rgba(9, 17, 36, 0.42)",
-                            boxShadow: "0 15px 36px rgba(12, 23, 46, 0.35)",
-                        }}
-                    >
-                        {tag}
-                    </span>
-                ))}
-            </div>
         </section>
     );
 }

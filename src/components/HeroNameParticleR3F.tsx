@@ -232,7 +232,7 @@ type LayerProps = {
 };
 
 function PointsLayer({
-    text = "Hi, my name is Yengner",
+    text = "Hey—I'm Yengner",
     color = "#ffffff",
     count = 9000,
     revealDelayMs = 800,
@@ -453,7 +453,7 @@ type HeroNameParticlesProps = {
 };
 
 export default function HeroNameParticlesR3F({
-    text = "Hi, my name is Yengner",
+    text = "Hi, I'm Yengner",
     color = "#7C717E",
     count = 10000,
     revealDelayMs = 800,
