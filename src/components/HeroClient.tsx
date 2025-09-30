@@ -2,19 +2,7 @@
 
 import HeroNameParticlesR3F from "./HeroNameParticleR3F";
 import Nav from "./Nav";
-import SkylineParticles from "./SkylineParticleComponent";
 import SocialLinks from "./SocialLinks";
-const debugBox: React.CSSProperties = {
-    position: "relative",
-};
-const debugOverlay: React.CSSProperties = {
-    content: '""',
-    position: "absolute",
-    inset: 0,
-    border: "2px dashed magenta",
-    pointerEvents: "none",
-    zIndex: 99999,
-};
 
 export default function HeroClient() {
     return (
