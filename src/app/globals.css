@@ -3,7 +3,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  
+  --text-strong: #3C3242;
+  --text:        #4B4452;
+  --text-muted:  #7E7485;
+  --text-subtle: #A9A0AD;
+  --grad-mauve-mist: linear-gradient(135deg, #F6F4F8 0%, #E8E4EB 100%);
+  --grad-lavender-drift: linear-gradient(135deg, #EEEAF4 0%, #E4E0EA 100%);
+  --grad-plum-veil: linear-gradient(135deg, #EDE9F1 0%, #D9D2E1 100%);
+  /* a touch stronger for primary CTAs */
+  --grad-mauve-accent: linear-gradient(135deg, #9C90A0 0%, #7C717E 100%);
 }
 
 @theme inline {
@@ -17,6 +25,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
   }
 }
 

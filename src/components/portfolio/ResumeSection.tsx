@@ -2,18 +2,18 @@
 
 import { Button, Group, Stack, Text } from "@mantine/core";
 import { Section } from "../utils";
-import { glassCardStyle } from "./styles";
+import { softCardStyle } from "./styles";
 
 const resumeLinks = {
-    download: "/resume.pdf",
-    view: "/resume.pdf",
+    download: "/Yengner_Bermudez_Resume.pdf",
+    view: "/Yengner_Bermudez_Resume.pdf",
 };
 
 const highlights = [
-    "Typed Next.js 15 APIs deployed on OCI",
-    "Supabase/PostgreSQL analytics pipelines",
-    "SHPE leadership and peer mentorship",
-];
+    "Type-safe Next.js 15 APIs on OCI — CI/CD, input validation, rate limiting, structured logs",
+    "Supabase/Postgres ETL with daily/weekly rollups powering real-time dashboards",
+    "GitHub App backend → ADK (Gemini 2.0) graph; React Flow architecture visualization",
+  ];
 
 export default function ResumeSection() {
     return (
@@ -24,7 +24,7 @@ export default function ResumeSection() {
         >
             <div
                 style={{
-                    ...glassCardStyle,
+                    ...softCardStyle,
                     display: "grid",
                     gap: "1.6rem",
                     gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
@@ -32,7 +32,7 @@ export default function ResumeSection() {
                 }}
             >
                 <Stack gap="md">
-                    <Text style={{ color: "rgba(223, 236, 255, 0.86)", lineHeight: 1.6 }}>
+                    <Text style={{ color: "var(--text)", lineHeight: 1.6 }}>
                         I update my résumé each sprint with the latest projects, leadership impact, and the stack shaping my work.
                         Download a PDF for quick sharing or open the live preview on your device.
                     </Text>
@@ -46,12 +46,12 @@ export default function ResumeSection() {
                                         width: 6,
                                         height: 6,
                                         borderRadius: "50%",
-                                        background: "linear-gradient(135deg, #60a5fa, #22d3ee)",
-                                        boxShadow: "0 0 12px rgba(96, 165, 250, 0.45)",
+                                        background: "var(--grad-mauve-accent)",
+                                        boxShadow: "0 0 10px rgba(60, 50, 66, 0.18)",
                                         flexShrink: 0,
                                     }}
                                 />
-                                <Text style={{ color: "rgba(206, 224, 255, 0.82)", lineHeight: 1.55 }}>{point}</Text>
+                                <Text style={{ color: "var(--text)", lineHeight: 1.55 }}>{point}</Text>
                             </div>
                         ))}
                     </div>
@@ -62,8 +62,15 @@ export default function ResumeSection() {
                             download
                             radius="xl"
                             size="md"
-                            variant="gradient"
-                            gradient={{ from: "#22d3ee", to: "#60a5fa", deg: 135 }}
+                            variant="filled"
+                            color="dark"
+                            styles={{
+                                root: {
+                                    background: 'var(--grad-mauve-accent)',
+                                    color: 'var(--foreground)',
+                                    border: '1px solid rgba(60, 50, 66, 0.18)',
+                                },
+                            }}
                         >
                             Download PDF
                         </Button>
@@ -75,8 +82,14 @@ export default function ResumeSection() {
                             radius="xl"
                             size="md"
                             variant="outline"
-                            color="blue.2"
-                            style={{ borderColor: "rgba(96, 165, 250, 0.45)", color: "rgba(192, 224, 255, 0.92)" }}
+                            color="gray"
+                            styles={{
+                                root: {
+                                    borderColor: 'var(--text-subtle)',
+                                    color: 'var(--text-strong)',
+                                    background: 'var(--background)',
+                                },
+                            }}
                         >
                             View online
                         </Button>
@@ -88,9 +101,9 @@ export default function ResumeSection() {
                         width: "100%",
                         aspectRatio: "3 / 4",
                         borderRadius: 20,
-                        border: "1px solid rgba(126, 196, 255, 0.35)",
-                        background: "radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.32), transparent 55%), rgba(10, 18, 36, 0.65)",
-                        boxShadow: "0 28px 54px rgba(10, 22, 46, 0.45)",
+                        border: "1px solid var(--text-subtle)",
+                        background: "var(--grad-mauve-mist)",
+                        boxShadow: "0 28px 54px rgba(60, 50, 66, 0.18)",
                         overflow: "hidden",
                         display: "flex",
                         alignItems: "center",
@@ -101,7 +114,7 @@ export default function ResumeSection() {
                     <iframe
                         src="/Yengner_Bermudez_Resume.pdf#view=FitH"
                         title="Résumé preview"
-                        style={{ width: "100%", height: "100%", border: "none", borderRadius: 12, background: "rgba(8, 16, 32, 0.85)" }}
+                        style={{ width: "100%", height: "100%", border: "none", borderRadius: 12, background: "var(--background)" }}
                     />
                 </div>
             </div>

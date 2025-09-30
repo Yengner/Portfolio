@@ -1,10 +1,9 @@
-// lib/projectGraph.ts
 export type GraphNode = {
     id: string;
     type: "repo" | "tech";
     label?: string;
     color?: string;
-    val?: number; // node size
+    val?: number; 
 };
 
 export type GraphLink = {

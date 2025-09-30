@@ -193,15 +193,15 @@ export default function FeaturedProjects() {
                         width: 12,
                         height: 12,
                         borderRadius: 12,
-                        border: '1px solid rgba(120, 198, 255, 0.45)',
-                        background: 'rgba(17, 30, 55, 0.6)',
+                        border: '1px solid var(--text-subtle)',
+                        background: 'var(--grad-mauve-mist)',
                         transition: 'all 160ms ease',
                     },
                     control: {
-                        color: '#0b172f',
-                        background: 'rgba(224, 244, 255, 0.92)',
+                        color: 'var(--text-strong)',
+                        background: 'var(--grad-lavender-drift)',
                         borderRadius: 999,
-                        border: '1px solid rgba(148, 198, 255, 0.3)',
+                        border: '1px solid rgba(60, 50, 66, 0.18)',
                     },
                 }}
             >
@@ -240,8 +240,9 @@ export default function FeaturedProjects() {
                                                     height: '100%',
                                                     overflow: 'hidden',
                                                     borderRadius: 18,
-                                                    border: '1px solid rgba(96,165,250,0.32)',
-                                                    background: 'linear-gradient(90deg, rgba(14,24,46,0.6), rgba(12,22,44,0.4))',
+                                                    border: '1px solid rgba(60, 50, 66, 0.18)',
+                                                    background: 'var(--grad-plum-veil)',
+                                                    boxShadow: '0 12px 26px rgba(60, 50, 66, 0.16)',
                                                     aspectRatio: '14 / 8',
                                                     padding: 0,
                                                     cursor: 'zoom-in',
@@ -263,7 +264,7 @@ export default function FeaturedProjects() {
                             {/* Right column */}
                             <Stack gap="1.2rem">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.6rem' }}>
-                                    <Text fw={600} style={{ color: 'black', fontSize: '1.25rem' }}>
+                                    <Text fw={600} style={{ color: 'var(--text-strong)', fontSize: '1.25rem' }}>
                                         {project.title}
                                     </Text>
                                     <span
@@ -272,13 +273,13 @@ export default function FeaturedProjects() {
                                             width: 12,
                                             height: 12,
                                             borderRadius: '50%',
-                                            background: 'linear-gradient(135deg, #7dd3fc, #22d3ee)',
+                                            background: 'var(--grad-mauve-accent)',
                                             flexShrink: 0,
                                         }}
                                     />
                                 </div>
 
-                                <Text style={{ color: 'gray', lineHeight: 1.7, fontSize: '0.97rem' }}>{project.description}</Text>
+                                <Text style={{ color: 'var(--text)', lineHeight: 1.7, fontSize: '0.97rem' }}>{project.description}</Text>
 
                                 <Group gap="xs" style={{ flexWrap: 'wrap' }}>
                                     {project.tech.map((badge) => (
@@ -287,9 +288,9 @@ export default function FeaturedProjects() {
                                             style={{
                                                 padding: '0.35rem 0.6rem',
                                                 borderRadius: 10,
-                                                background: 'rgba(16,34,64,0.55)',
-                                                border: '1px solid rgba(100,200,255,0.25)',
-                                                color: 'rgba(220,236,255,0.92)',
+                                                background: 'rgba(156, 144, 160, 0.15)',
+                                                border: '1px solid var(--text-subtle)',
+                                                color: 'var(--text-strong)',
                                                 fontSize: '0.75rem',
                                                 letterSpacing: '0.02em',
                                             }}
@@ -314,15 +315,14 @@ export default function FeaturedProjects() {
                                                     background:
                                                         link.variant === 'subtle'
                                                             ? 'transparent'
-                                                            // soft pastel gradients (blue, mint, peach, lavender)
-                                                            : 'linear-gradient(135deg, #E6F0FF, #D6E6FF)',
+                                                            : 'var(--grad-lavender-drift)',
                                                     color:
                                                         link.variant === 'subtle'
-                                                            ? 'rgba(40, 52, 71, 0.85)'
-                                                            : '#14223A',
+                                                            ? 'var(--text)'
+                                                            : 'var(--text-strong)',
                                                     border:
                                                         link.variant === 'subtle'
-                                                            ? '1px solid rgba(40, 52, 71, 0.15)'
+                                                            ? '1px solid rgba(60, 50, 66, 0.2)'
                                                             : 'none',
                                                 },
                                             }}
@@ -344,9 +344,9 @@ export default function FeaturedProjects() {
                 onClose={closeViewer}
                 fullScreen
                 withCloseButton
-                overlayProps={{ opacity: 0.35, blur: 2 }}
+                overlayProps={{ opacity: 0.4, blur: 6 }}
                 styles={{
-                    content: { background: "rgba(5,10,20,0.9)", padding: "1.25rem" },
+                    content: { background: "var(--grad-mauve-mist)", padding: "1.25rem" },
                     header: { background: "transparent", borderBottom: "none" },
                     body: { paddingTop: 0 },
                 }}
@@ -363,7 +363,7 @@ export default function FeaturedProjects() {
                     >
                         {/* LEFT: Carousel with CONTAIN (no cropping) */}
                         <Box>
-                            <Text fw={600} size="lg" c="white" mb="sm">
+                            <Text fw={600} size="lg" c="var(--text-strong)" mb="sm">
                                 {featuredProjects[viewer.projIdx].title}
                             </Text>
 
@@ -377,15 +377,15 @@ export default function FeaturedProjects() {
                                         width: 12,
                                         height: 12,
                                         borderRadius: 12,
-                                        border: "1px solid rgba(120, 198, 255, 0.45)",
-                                        background: "rgba(17, 30, 55, 0.6)",
+                                        border: "1px solid var(--text-subtle)",
+                                        background: "var(--grad-lavender-drift)",
                                         transition: "all 160ms ease",
                                     },
                                     control: {
-                                        color: "#0b172f",
-                                        background: "rgba(224, 244, 255, 0.92)",
+                                        color: "var(--text-strong)",
+                                        background: "var(--grad-mauve-mist)",
                                         borderRadius: 999,
-                                        border: "1px solid rgba(148, 198, 255, 0.3)",
+                                        border: "1px solid rgba(60, 50, 66, 0.18)",
                                         height: 50,
                                         width: 50,
                                     },
@@ -403,18 +403,18 @@ export default function FeaturedProjects() {
                                                 justifyItems: 'center',
                                             }}
                                         >
-                                            <div
-                                                style={{
-                                                    position: 'relative',
-                                                    width: 'min(92vw, 1200px)',
-                                                    aspectRatio: '16 / 9',
-                                                    borderRadius: 18,
-                                                    overflow: 'hidden',
-                                                    border: '1px solid rgba(96,165,250,0.32)',
-                                                    background:
-                                                        'linear-gradient(90deg, rgba(14,24,46,0.6), rgba(12,22,44,0.4))',
-                                                }}
-                                            >
+                                           <div
+                                               style={{
+                                                   position: 'relative',
+                                                   width: 'min(92vw, 1200px)',
+                                                   aspectRatio: '16 / 9',
+                                                   borderRadius: 18,
+                                                   overflow: 'hidden',
+                                                    border: '1px solid rgba(60, 50, 66, 0.18)',
+                                                    background: 'var(--grad-plum-veil)',
+                                                    // boxShadow: '0 18px 40px rgba(60, 50, 66, 0.18)',
+                                               }}
+                                           >
                                                 <img
                                                     src={img.src}
                                                     alt={img.alt ?? 'project image'}
@@ -430,21 +430,22 @@ export default function FeaturedProjects() {
                         {/* RIGHT: Rich details panel */}
                         <Box
                             style={{
-                                border: '1px solid rgba(148, 198, 255, 0.22)',
+                                border: '1px solid var(--text-subtle)',
                                 borderRadius: 16,
                                 padding: '1rem',
-                                background: 'linear-gradient(180deg, rgba(10,18,36,0.7), rgba(8,16,34,0.55))',
+                                background: 'var(--grad-lavender-drift)',
+                                boxShadow: '0 18px 38px rgba(60, 50, 66, 0.16)',
                                 height: 'calc(100vh - 140px)',
                                 overflow: 'auto',
                             }}
                         >
                             <Stack gap="md">
                                 <div>
-                                    <Text fw={700} size="lg" c="white">
+                                    <Text fw={700} size="lg" c="var(--text-strong)">
                                         {featuredProjects[viewer.projIdx].title}
                                     </Text>
                                     {featuredProjects[viewer.projIdx].images?.[viewer.imgIdx]?.detail && (
-                                        <Text size="sm" c="rgba(226,238,255,0.9)" mt="sm">
+                                        <Text size="sm" c="var(--text)" mt="sm">
                                             {featuredProjects[viewer.projIdx].images?.[viewer.imgIdx]?.detail}
                                         </Text>
                                     )}

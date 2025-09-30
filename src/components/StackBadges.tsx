@@ -1,4 +1,3 @@
-// components/StackBadges.tsx
 "use client";
 
 import React from "react";
@@ -20,7 +19,9 @@ const Shield = ({ alt, src }: BadgeDef) => (
             height: 32,
             display: "block",
             borderRadius: 6,
-            boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
+            boxShadow: "0 6px 18px rgba(60, 50, 66, 0.14)",
+            background: "var(--background)",
+            border: "1px solid rgba(60, 50, 66, 0.08)",
         }}
         loading="lazy"
     />
@@ -79,7 +80,14 @@ export default function StackBadges() {
         <div style={{ display: "grid", gap: 10 }}>
             {Object.entries(STACK).map(([group, badges]) => (
                 <div key={group} style={{ display: "grid", gap: 6 }}>
-                    <span style={{ fontSize: 12, letterSpacing: "0.08em", color: "gray" }}>
+                    <span
+                        style={{
+                            fontSize: 12,
+                            letterSpacing: "0.08em",
+                            color: "var(--text-muted)",
+                            textTransform: "uppercase",
+                        }}
+                    >
                         {group}
                     </span>
                     <div style={rowStyle}>

@@ -1,13 +1,21 @@
 import type { CSSProperties } from "react";
 
-export const glassCardStyle: CSSProperties = {
-    background: "linear-gradient(160deg, rgba(10,18,42,0.58) 0%, rgba(11,26,52,0.38) 100%)",
-    border: "1px solid rgba(120, 198, 255, 0.26)",
-    borderRadius: 20,
-    padding: "1.8rem",
-    backdropFilter: "blur(12px)",
-    boxShadow: "0 32px 70px rgba(10, 22, 46, 0.45)",
+export const softCardStyle: React.CSSProperties = {
+    background: "linear-gradient(180deg, #FFFFFF 0%, #F6F4F8 100%)",
+    backdropFilter: "blur(8px)",
+    WebkitBackdropFilter: "blur(8px)",
+    border: "1px solid rgba(255,255,255,0.55)",
+    outline: "1px solid rgba(15,23,42,0.08)",
+    borderRadius: 16,
+    padding: "1.5rem",
+    boxShadow: "0 10px 30px rgba(15, 23, 42, 0.08)",
 };
+export const softCardHover: React.CSSProperties = {
+    boxShadow:
+        "0 2px 6px rgba(16, 24, 40, 0.08), 0 20px 40px rgba(16, 24, 40, 0.10)",
+    transform: "translateY(-1px)",
+};
+
 
 export const cardTextStyle: CSSProperties = {
     color: "rgba(228, 238, 255, 0.8)",

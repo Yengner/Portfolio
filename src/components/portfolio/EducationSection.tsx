@@ -3,7 +3,7 @@
 import { Button, Group, Modal, Stack, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Section } from "../utils";
-import { glassCardStyle } from "./styles";
+import { softCardStyle } from "./styles";
 import USFParticles from "../ParticlesComponent";
 
 const universityInfo = {
@@ -46,18 +46,18 @@ export default function EducationPage() {
                     size="xl"
                     centered
                     overlayProps={{
-                        blur: 4,
-                        opacity: 0.45,
-                        color: "#0b1324",
+                        blur: 8,
+                        opacity: 0.4,
+                        color: "rgba(60, 50, 66, 0.35)",
                     }}
                     styles={{
-                        header: { borderBottom: "1px solid rgba(148, 197, 255, 0.22)", paddingBottom: "0.75rem" },
-                        body: { background: "linear-gradient(160deg, rgba(12,22,40,0.65) 0%, rgba(10,26,46,0.45) 100%)" },
-                        title: { color: "#e3efff", fontWeight: 600, letterSpacing: "0.04em" },
+                        header: { borderBottom: "1px solid var(--text-subtle)", paddingBottom: "0.75rem" },
+                        body: { background: "var(--grad-lavender-drift)" },
+                        title: { color: "var(--text-strong)", fontWeight: 600, letterSpacing: "0.04em" },
                         content: {
-                            background: "rgba(13, 24, 46, 0.82)",
-                            border: "1px solid rgba(120, 198, 255, 0.24)",
-                            boxShadow: "0 28px 60px rgba(10, 18, 42, 0.42)",
+                            background: "var(--grad-mauve-mist)",
+                            border: "1px solid var(--text-subtle)",
+                            boxShadow: "0 28px 60px rgba(60, 50, 66, 0.22)",
                         },
                     }}
                 >
@@ -69,12 +69,12 @@ export default function EducationPage() {
                                 style={{
                                     padding: "0.75rem 1rem",
                                     borderRadius: 14,
-                                    border: "1px solid rgba(120, 198, 255, 0.24)",
-                                    background: "rgba(9, 18, 36, 0.55)",
+                                    border: "1px solid var(--text-subtle)",
+                                    background: "var(--grad-plum-veil)",
                                 }}
                             >
-                                <Text style={{ color: "rgba(227, 239, 255, 0.9)", fontWeight: 600 }}>{course.code}</Text>
-                                <Text style={{ color: "rgba(204, 224, 255, 0.78)", fontSize: "0.95rem" }}>{course.title}</Text>
+                                <Text style={{ color: "var(--text-strong)", fontWeight: 600 }}>{course.code}</Text>
+                                <Text style={{ color: "var(--text)", fontSize: "0.95rem" }}>{course.title}</Text>
                             </Group>
                         ))}
                     </Stack>
@@ -83,7 +83,7 @@ export default function EducationPage() {
                 <div style={{ position: "relative" }}>
                     <div
                         style={{
-                            ...glassCardStyle,
+                            ...softCardStyle,
                             // background: "transparent",
                             // background: "rgba(186, 186, 186, 0.55)",
                             position: "relative",
@@ -121,10 +121,10 @@ export default function EducationPage() {
 
                         <Stack gap="lg">
                             <Stack gap="xs">
-                                <Text style={{ color: "rgba(220, 234, 254, 0.92)", fontSize: "1.1rem", fontWeight: 600 }}>
+                                <Text c="var(--text-strong)" style={{ fontSize: "1.1rem", fontWeight: 600 }}>
                                     {universityInfo.name}
                                 </Text>
-                                <Text style={{ color: "rgba(204, 226, 255, 0.7)", letterSpacing: "0.06em", fontSize: "0.85rem" }}>
+                                <Text c="var(--text)" style={{ letterSpacing: "0.06em", fontSize: "0.85rem" }}>
                                     {universityInfo.subtitle}
                                 </Text>
                             </Stack>
@@ -143,8 +143,9 @@ export default function EducationPage() {
                                             display: "flex",
                                             flexDirection: "column",
                                             gap: "0.6rem",
-                                            background: "rgba(11, 24, 48, 0.45)",
-                                            border: "1px solid rgba(120, 198, 255, 0.25)",
+                                            background: "var(--grad-mauve-mist)",
+                                            border: "1px solid var(--text-subtle)",
+                                            boxShadow: "0 12px 28px rgba(60, 50, 66, 0.12)",
                                             borderRadius: 14,
                                             padding: "1rem 1.1rem",
                                         }}
@@ -152,10 +153,10 @@ export default function EducationPage() {
                                         <div style={{ display: "grid", gap: "0.5rem" }}>
                                             {column.items.map((item) => (
                                                 <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-                                                    <Text style={{ color: "rgba(197, 218, 255, 0.65)", fontSize: "0.72rem", letterSpacing: "0.08em" }}>
+                                                    <Text style={{ color: "var(--text-strong)", fontSize: "0.72rem", letterSpacing: "0.08em" }}>
                                                         {item.label}
                                                     </Text>
-                                                    <Text style={{ color: "rgba(227, 239, 255, 0.92)", fontWeight: 600 }}>
+                                                    <Text style={{ color: "var(--text)", fontWeight: 600 }}>
                                                         {item.value}
                                                     </Text>
                                                 </div>
@@ -167,10 +168,17 @@ export default function EducationPage() {
 
                             <Button
                                 onClick={openModal}
-                                variant="gradient"
-                                gradient={{ from: "#60a5fa", to: "#22d3ee", deg: 130 }}
+                                variant="filled"
+                                color="dark"
                                 size="sm"
                                 radius="xl"
+                                styles={{
+                                    root: {
+                                        background: 'var(--grad-mauve-accent)',
+                                        color: 'var(--foreground)',
+                                        border: '1px solid rgba(60, 50, 66, 0.2)',
+                                    },
+                                }}
                                 style={{ alignSelf: "flex-start" }}
                             >
                                 View current classes

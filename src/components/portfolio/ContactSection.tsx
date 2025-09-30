@@ -2,7 +2,7 @@
 
 import { Button, Group, Stack, Text } from "@mantine/core";
 import { Section } from "../utils";
-import { glassCardStyle } from "./styles";
+import { softCardStyle } from "./styles";
 import SocialLinks from "../SocialLinks";
 
 export default function ContactSection() {
@@ -27,9 +27,9 @@ export default function ContactSection() {
                         zIndex: 0,
                     }}
                 /> */}
-                <Stack gap="md" style={{ ...glassCardStyle, position: "relative", zIndex: 1, textAlign: "center" }}>
+                <Stack gap="md" style={{ ...softCardStyle, position: "relative", zIndex: 1, textAlign: "center" }}>
                     <Stack gap="md" align="center">
-                        <Text style={{ color: "rgba(223, 236, 255, 0.84)", lineHeight: 1.6 }}>
+                        <Text style={{ color: "var(--text)", lineHeight: 1.6 }}>
                             Drop a note about your next project or reach out for coffee chats. I enjoy pairing typed APIs,
                             data, and resilient infra to craft thoughtful products.
                         </Text>
@@ -41,19 +41,32 @@ export default function ContactSection() {
                             href="mailto:yengnerb475@gmail.com"
                             size="md"
                             radius="xl"
-                            variant="gradient"
-                            gradient={{ from: "#22d3ee", to: "#60a5fa", deg: 135 }}
+                            variant="filled"
+                            color="dark"
+                            styles={{
+                                root: {
+                                    background: 'var(--grad-mauve-accent)',
+                                    color: 'var(--foreground)',
+                                    border: '1px solid rgba(60, 50, 66, 0.18)',
+                                },
+                            }}
                         >
                             Email me
                         </Button>
                         <Button
                             component="a"
-                            href="https://cal.com/yengner/30min"
+                            href="https://calendly.com/yengnerb-usf/30min"
                             size="md"
                             radius="xl"
                             variant="outline"
-                            color="blue.2"
-                            style={{ borderColor: "rgba(96, 165, 250, 0.45)", color: "rgba(192, 224, 255, 0.92)" }}
+                            color="gray"
+                            styles={{
+                                root: {
+                                    borderColor: 'var(--text-subtle)',
+                                    color: 'var(--text-strong)',
+                                    background: 'var(--background)',
+                                },
+                            }}
                         >
                             Book a call
                         </Button>

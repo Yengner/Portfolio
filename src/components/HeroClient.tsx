@@ -48,7 +48,7 @@ export default function HeroClient() {
                     revealDurationMs={3700}
                     freeWanderAmp={0.18}
                     freeWanderSpeed={0.22}
-                    color="#7C717E"
+                    color="#3C3242"
                 />
             </div>
 
@@ -59,7 +59,7 @@ export default function HeroClient() {
                     background: "transparent",
                     boxShadow: "none",
                     backdropFilter: "none",
-                    color: "#7C717E",
+                    color: "#4B4452",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     fontSize: "0.8rem",
@@ -130,12 +130,11 @@ export default function HeroClient() {
                     style={{
                         padding: "0.75rem 1.9rem",
                         borderRadius: 999,
-                        // background: "linear-gradient(120deg, #667bff, #22d3ee)",
-                        background: "gray",
-                        color: "#061024",
+                        background: "var(--grad-mauve-accent)",
+                        color: "var(--text)",
                         fontWeight: 600,
                         textDecoration: "none",
-                        boxShadow: "0 20px 40px rgba(34, 211, 238, 0.15)",
+                        boxShadow: "0 20px 40px var(--grad-plum-veil)",
                         opacity: 0,
                         animation: "hero-cta 1.4s ease 4.4s forwards",
                     }}
@@ -147,12 +146,12 @@ export default function HeroClient() {
                     style={{
                         padding: "0.75rem 1.9rem",
                         borderRadius: 999,
-                        border: "1px solid rgba(102, 212, 255, 0.45)",
-                        color: "rgba(212, 232, 255, 0.9)",
+                        border: "1px solid var(--grad-plum-veil)",
+                        color: "var(--text)",
                         fontWeight: 500,
                         textDecoration: "none",
                         backdropFilter: "blur(6px)",
-                        background: "rgba(9, 17, 36, 0.42)",
+                        background: "var(--grad-lavender-drift)",
                         opacity: 0,
                         animation: "hero-cta 1.4s ease 4.6s forwards",
                     }}

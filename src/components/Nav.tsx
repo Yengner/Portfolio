@@ -18,9 +18,9 @@ const TOP_NAV_STYLE: CSSProperties = {
     gap: "1.8rem",
     padding: "0.65rem 1.6rem",
     borderRadius: 999,
-    background: "rgba(9, 17, 36, 0.78)",
-    border: "1px solid rgba(148, 197, 255, 0.35)",
-    boxShadow: "0 24px 60px rgba(8, 16, 36, 0.45)",
+    background: "var(--grad-lavender-drift)",
+    border: "1px solid var(--text-subtle)",
+    boxShadow: "0 24px 60px rgba(60, 50, 66, 0.24)",
     backdropFilter: "blur(10px)",
     opacity: 0,
     animation: "nav-fade 1.9s ease 1.2s forwards",
@@ -28,8 +28,9 @@ const TOP_NAV_STYLE: CSSProperties = {
 };
 
 const TOP_NAV_LINK_STYLE: CSSProperties = {
-    color: "rgba(219, 234, 254, 0.82)",
+    color: "var(--text-strong)",
     fontSize: "0.85rem",
+    fontWeight: 600,
     letterSpacing: "0.08em",
     textTransform: "uppercase",
     textDecoration: "none",

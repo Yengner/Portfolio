@@ -1,4 +1,3 @@
-// components/GitHubRightRail.tsx
 "use client";
 
 import React from "react";
@@ -20,10 +19,10 @@ function PinnedRepoCard({ username, repo }: PinProps) {
             style={{
                 display: "block",
                 borderRadius: 14,
-                border: "1px solid rgba(148, 208, 255, 0.35)",
+                border: "1px solid var(--text-subtle)",
                 overflow: "hidden",
-                boxShadow: "0 10px 28px rgba(10,20,38,0.28)",
-                background: "rgba(10,18,36,0.35)",
+                boxShadow: "0 16px 38px rgba(60, 50, 66, 0.18)",
+                background: "var(--grad-plum-veil)",
             }}
         >
             <picture>
@@ -55,10 +54,16 @@ export default function GitHubRightRail() {
     ];
 
     return (
-        <div style={{ display: "grid", gap: "2rem" }}>
+        <div
+            style={{
+                display: "grid",
+                gap: "2rem",
+                color: "var(--text)",
+            }}
+        >
             {/* Stats at the top */}
             <GitHubStatsCard variant="stats" style={{ width: "100%" }} />
-            <Text>
+            <Text style={{ color: "var(--text-strong)" }}>
                 <strong>Pinned Repositories</strong>
             </Text>
             {/* Pinned repo grid (2 columns on desktop, 1 on small screens) */}
@@ -68,6 +73,7 @@ export default function GitHubRightRail() {
                     display: "grid",
                     gap: "1.5rem",
                     gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                    color: "inherit",
                 }}
             >
 

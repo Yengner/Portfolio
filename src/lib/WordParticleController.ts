@@ -1,4 +1,3 @@
-// WordParticleController.ts
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 export class WordParticleController {
