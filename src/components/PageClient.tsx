@@ -7,6 +7,7 @@ import EducationPage from "./portfolio/EducationSection";
 import ResumeSection from "./portfolio/ResumeSection";
 import ContactSection from "./portfolio/ContactSection";
 import FeaturedProjects from "./portfolio/FeaturedProjects";
+import SkylineTest from "./portfolio/SkylineTest";
 
 export default function HomeClient() {
     return (
@@ -14,6 +15,7 @@ export default function HomeClient() {
             <BackgroundParticles />
             <main style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", gap: "3.2rem" }}>
                 <HeroClient />
+                <SkylineTest/>
                 <ProjectsSection />
                 <FeaturedProjects />
                 <EducationPage />
