@@ -1,7 +1,7 @@
 "use client";
 
-import Nav from "./Nav";
 import HeroNameParticlesR3F from "./HeroNameParticleR3F";
+import Nav from "./Nav";
 import SocialLinks from "./SocialLinks";
 
 export default function HeroClient() {
