@@ -2,7 +2,6 @@
 
 import HeroClient from "../components/HeroClient";
 import BackgroundParticles from "./BackgroundParticles";
-
 import ProjectsSection from "./portfolio/ProjectsSection";
 import EducationPage from "./portfolio/EducationSection";
 import ResumeSection from "./portfolio/ResumeSection";

@@ -1,11 +1,8 @@
 "use client";
 
-import { Button, Group, Stack, Text } from "@mantine/core";
+import { Stack } from "@mantine/core";
 import { Section } from "../utils";
-import { badgeChipStyle, glassCardStyle, projectCardStyle } from "./styles";
-import { GitHubStatsCard } from "../GitHubStatsCards";
 import StackBadges from "../StackBadges";
-import ProjectForceGraph2D from "../ProjectForceGraph2D";
 import GitHubRightRail from "../GitHubRightRail";
 
 
