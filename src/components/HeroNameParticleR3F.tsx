@@ -453,7 +453,7 @@ type HeroNameParticlesProps = {
 };
 
 export default function HeroNameParticlesR3F({
-    text = "Test, Test Test",
+    text = "Yengner E. Bermudez",
     color = "#7C717E",
     count = 10000,
     revealDelayMs = 800,
