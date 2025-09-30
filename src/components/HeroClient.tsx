@@ -1,44 +1,8 @@
 "use client";
 
-import type { CSSProperties } from "react";
-import HeroNameParticlesR3F from "./HeroNameParticleR3F";
 import Nav from "./Nav";
-
-const topLinks = [
-    { href: "#hero", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#capabilities", label: "Capabilities" },
-    { href: "#contact", label: "Contact" },
-];
-
-const TOP_NAV_STYLE: CSSProperties = {
-    position: "absolute",
-    top: "2.5rem",
-    left: "50%",
-    transform: "translate(-50%, -12px)",
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    gap: "1.8rem",
-    padding: "0.65rem 1.6rem",
-    borderRadius: 999,
-    background: "rgba(9, 17, 36, 0.78)",
-    border: "1px solid rgba(148, 197, 255, 0.35)",
-    boxShadow: "0 24px 60px rgba(8, 16, 36, 0.45)",
-    backdropFilter: "blur(10px)",
-    opacity: 0,
-    animation: "nav-fade 1.9s ease 1.2s forwards",
-    zIndex: 5,
-};
-
-const TOP_NAV_LINK_STYLE: CSSProperties = {
-    color: "rgba(219, 234, 254, 0.82)",
-    fontSize: "0.85rem",
-    letterSpacing: "0.08em",
-    textTransform: "uppercase",
-    textDecoration: "none",
-    transition: "color 0.25s ease",
-};
+import HeroNameParticlesR3F from "./HeroNameParticleR3F";
+import SocialLinks from "./SocialLinks";
 
 export default function HeroClient() {
     return (
@@ -166,11 +130,12 @@ export default function HeroClient() {
                     style={{
                         padding: "0.75rem 1.9rem",
                         borderRadius: 999,
-                        background: "linear-gradient(120deg, #667bff, #22d3ee)",
+                        // background: "linear-gradient(120deg, #667bff, #22d3ee)",
+                        background: "gray",
                         color: "#061024",
                         fontWeight: 600,
                         textDecoration: "none",
-                        boxShadow: "0 20px 40px rgba(34, 211, 238, 0.35)",
+                        boxShadow: "0 20px 40px rgba(34, 211, 238, 0.15)",
                         opacity: 0,
                         animation: "hero-cta 1.4s ease 4.4s forwards",
                     }}
@@ -195,6 +160,8 @@ export default function HeroClient() {
                     Projects
                 </a>
             </div>
+
+            <SocialLinks />
 
 
         </section>

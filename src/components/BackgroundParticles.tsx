@@ -16,11 +16,11 @@ export default function BackgroundParticles() {
 
     const options: ISourceOptions = useMemo(() => ({
         fullScreen: { enable: true, zIndex: -5 },
-        background: { color: "transparent" },
+        // background: { color: "#ffffff" },
         fpsLimit: 60,
         particles: {
-            number: { value: 220, density: { enable: true, area: 900 } },
-            size: { value: { min: 0.4, max: 1.8 } },
+            number: { value: 420, density: { enable: true, area: 900 } },
+            size: { value: { min: 0.6, max: 1.8 } },
             opacity: { value: { min: 0.12, max: 0.42 } },
             move: { enable: true, speed: { min: 0.25, max: 0.85 }, outModes: { default: "out" } },
             color: { value: "#7C717E" },

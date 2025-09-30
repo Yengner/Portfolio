@@ -19,15 +19,15 @@ export const accentTextStyle: CSSProperties = {
 };
 
 export const projectCardStyle: CSSProperties = {
-    background: "linear-gradient(180deg, rgba(15,23,42,0.82) 0%, rgba(17,33,60,0.65) 100%)",
-    border: "1px solid rgba(122, 189, 255, 0.35)",
-    borderRadius: 22,
+
+    // border: "1px solid rgba(148, 208, 255, 0.45)",
+    // borderRadius: 22,
     padding: "1.8rem",
-    boxShadow: "0 26px 60px rgba(10, 18, 36, 0.45)",
+    // boxShadow: "0 20px 48px rgba(13, 32, 64, 0.32)",
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
-    backdropFilter: "blur(10px)",
+    // backdropFilter: "blur(2px)",
 };
 
 export const badgeChipStyle: CSSProperties = {

@@ -64,6 +64,7 @@ export default function USFParticles({
             interactivity: {
                 events: {
                     onHover: { enable: true, mode: "bubble" },
+                    resize: { enable: false },
                 },
                 modes: {
                     bubble: { distance: 25, duration: 0.9, size: 2.5, opacity: 0.6 },

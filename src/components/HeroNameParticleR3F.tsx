@@ -453,7 +453,7 @@ type HeroNameParticlesProps = {
 };
 
 export default function HeroNameParticlesR3F({
-    text = "Hi, I'm Yengner",
+    text = "Test, Test Test",
     color = "#7C717E",
     count = 10000,
     revealDelayMs = 800,
