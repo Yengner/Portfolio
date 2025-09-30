@@ -2,7 +2,19 @@
 
 import HeroNameParticlesR3F from "./HeroNameParticleR3F";
 import Nav from "./Nav";
+import SkylineParticles from "./SkylineParticleComponent";
 import SocialLinks from "./SocialLinks";
+const debugBox: React.CSSProperties = {
+    position: "relative",
+};
+const debugOverlay: React.CSSProperties = {
+    content: '""',
+    position: "absolute",
+    inset: 0,
+    border: "2px dashed magenta",
+    pointerEvents: "none",
+    zIndex: 99999,
+};
 
 export default function HeroClient() {
     return (
@@ -17,6 +29,7 @@ export default function HeroClient() {
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "clamp(5rem, 11vw, 9rem) 1.5rem",
+                paddingBottom: "clamp(12rem, 20vw, 16rem)",
                 gap: "clamp(1.4rem, 2.8vw, 2.6rem)",
                 color: "#e8f0ff",
                 textAlign: "center",
@@ -130,7 +143,8 @@ export default function HeroClient() {
                     style={{
                         padding: "0.75rem 1.9rem",
                         borderRadius: 999,
-                        background: "var(--grad-mauve-accent)",
+                        background: "var(--grad-plum-veil)",
+                        border: "1px solid var(--text-subtle)",
                         color: "var(--text)",
                         fontWeight: 600,
                         textDecoration: "none",
@@ -161,6 +175,8 @@ export default function HeroClient() {
             </div>
 
             <SocialLinks />
+
+
 
 
         </section>

@@ -1,11 +1,14 @@
 "use client";
 
-import { Button, Group, Stack, Text } from "@mantine/core";
+import { Button, Group, Modal, Stack, Text } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { Section } from "../utils";
 import { softCardStyle } from "./styles";
 import SocialLinks from "../SocialLinks";
 
 export default function ContactSection() {
+    const [emailModalOpen, emailModal] = useDisclosure(false);
+
     return (
         <Section
             id="contact"
@@ -37,8 +40,7 @@ export default function ContactSection() {
                     </Stack>
                     <Group justify="center" gap="md">
                         <Button
-                            component="a"
-                            href="mailto:yengnerb475@gmail.com"
+                            onClick={emailModal.open}
                             size="md"
                             radius="xl"
                             variant="filled"
@@ -73,6 +75,33 @@ export default function ContactSection() {
                     </Group>
                 </Stack>
             </div>
+
+            <Modal
+                opened={emailModalOpen}
+                onClose={emailModal.close}
+                title="Reach out"
+                centered
+                radius="lg"
+                overlayProps={{ blur: 6, opacity: 0.35 }}
+                styles={{
+                    header: { borderBottom: "1px solid var(--text-subtle)" },
+                    title: { color: "var(--text-strong)", fontWeight: 600 },
+                    content: {
+                        background: "var(--grad-mauve-mist)",
+                        border: "1px solid var(--text-subtle)",
+                        boxShadow: "0 24px 48px rgba(60, 50, 66, 0.18)",
+                    },
+                }}
+            >
+                <Stack gap="sm" maw={360}>
+                    <Text style={{ color: "var(--text)" }}>
+                        Personal: <strong>yengnerb475@gmail.com</strong>
+                    </Text>
+                    <Text style={{ color: "var(--text)" }}>
+                        School: <strong>yengnerb@usf.edu</strong>
+                    </Text>
+                </Stack>
+            </Modal>
         </Section>
     );
 }
