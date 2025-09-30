@@ -10,7 +10,7 @@ import GitHubRightRail from "../GitHubRightRail";
 export default function ProjectsSection() {
     return (
         <Section
-            id="projects"
+            id="me"
             title="Projects & GitHub"
         >
             <Stack gap="8rem">

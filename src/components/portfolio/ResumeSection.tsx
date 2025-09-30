@@ -10,10 +10,11 @@ const resumeLinks = {
 };
 
 const highlights = [
-    "Type-safe Next.js 15 APIs on OCI — CI/CD, input validation, rate limiting, structured logs",
-    "Supabase/Postgres ETL with daily/weekly rollups powering real-time dashboards",
-    "GitHub App backend → ADK (Gemini 2.0) graph; React Flow architecture visualization",
-  ];
+    "Shipped type-safe Next.js 15 APIs on OCI with CI/CD, validation, and rate-limiting",
+    "Built ETL to normalize ads data (Meta Graph API) into Supabase with daily/weekly rollups",
+    "Created CodeAtlas backend: GitHub App → ADK graph → React Flow visualization; led SHPE outreach & mentorship",
+];
+
 
 export default function ResumeSection() {
     return (

@@ -126,7 +126,7 @@ export default function HeroClient() {
                 }}
             >
                 <a
-                    href="/resume.pdf"
+                    href="#resume"
                     style={{
                         padding: "0.75rem 1.9rem",
                         borderRadius: 999,

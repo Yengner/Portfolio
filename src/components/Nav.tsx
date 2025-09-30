@@ -1,9 +1,9 @@
 import { CSSProperties } from "react";
 
 const topLinks = [
-    { href: "#hero", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#capabilities", label: "Capabilities" },
+    { href: "#me", label: "Me" },
+    { href: "#education", label: "Education" },
+    { href: "#resume", label: "Resume" },
     { href: "#contact", label: "Contact" },
 ];
 
