@@ -144,7 +144,7 @@ export default function HeroClient() {
                     View résumé
                 </a>
                 <a
-                    href="#projects"
+                    href="#featured-projects"
                     style={{
                         padding: "0.75rem 1.9rem",
                         borderRadius: 999,
