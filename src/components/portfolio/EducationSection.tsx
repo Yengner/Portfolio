@@ -22,10 +22,12 @@ const academicColumns = [
 ];
 
 const currentCourses = [
-    { code: "COP 4600", title: "Operating Systems" },
-    { code: "CEN 4020", title: "Software Engineering" },
-    { code: "COT 4210", title: "Discrete Structures & Algorithms" },
-    { code: "MAD 4504", title: "Theory of Computation" },
+    { code: "CAI 4002", title: "Introduction To AI" },
+    { code: "COP 4365", title: "Software System Development" },
+    { code: "CNT 4419", title: "Secure Coding" },
+    { code: "CDA 3201", title: "Computer Logic & Design" },
+    { code: "CDA 3201L", title: "Computer Logic & Design Lab" },
+    { code: "ENC 3246", title: "Communication For Engineers" },
 ];
 
 export default function EducationPage() {
