@@ -1,85 +1,51 @@
 "use client";
 
-import React from "react";
 import { GitHubStatsCard } from "./GitHubStatsCards";
 import { Text } from "@mantine/core";
 
-type PinProps = { username: string; repo: string };
-
-function PinnedRepoCard({ username, repo }: PinProps) {
-    const base = `https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${repo}&hide_border=true`;
-    const light = `${base}`;
-    const dark = `${base}&theme=tokyonight`;
-
-    return (
-        <a
-            href={`https://github.com/${username}/${repo}`}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-                display: "block",
-                borderRadius: 14,
-                border: "1px solid var(--text-subtle)",
-                overflow: "hidden",
-                boxShadow: "0 16px 38px rgba(60, 50, 66, 0.18)",
-                background: "var(--grad-plum-veil)",
-            }}
-        >
-            <picture>
-                <source srcSet={dark} media="(prefers-color-scheme: dark)" />
-                <img
-                    src={light}
-                    alt={`${repo} pinned card`}
-                    style={{ width: "100%", display: "block" }}
-                    loading="lazy"
-                    sizes="(max-width: 640px) 100vw, 320px"
-                />
-            </picture>
-        </a>
-    );
-}
-
 export default function GitHubRightRail() {
-    const username = "yengner";
-
-    // Put the repos you want to showcase here (6–8 to fill 2x3 / 2x4 nicely)
-    const pinned: string[] = [
-        "DeepVisor",
-        "FloorPlan-Project",
-        "desi-discipline",
-        "CIDB-Scraper",
-        "CapitalBlend",
-        "detectron2_cars",
-        // "Another-Repo", "One-More-Repo"
-    ];
-
     return (
         <div
             style={{
                 display: "grid",
-                gap: "2rem",
+                gap: "1.6rem",
                 color: "var(--text)",
             }}
         >
-            {/* Stats at the top */}
-            <GitHubStatsCard variant="stats" style={{ width: "100%" }} />
-            <Text style={{ color: "var(--text-strong)" }}>
-                <strong>Pinned Repositories</strong>
-            </Text>
-            {/* Pinned repo grid (2 columns on desktop, 1 on small screens) */}
             <div
                 style={{
-
                     display: "grid",
-                    gap: "1.5rem",
-                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                    color: "inherit",
+                    gap: "0.65rem",
+                    padding: "1.25rem",
+                    borderRadius: 18,
+                    border: "1px solid var(--card-border)",
+                    background: "var(--grad-mauve-mist)",
+                    boxShadow: "var(--shadow-soft)",
                 }}
             >
-
-                {pinned.slice(0, 8).map((repo) => (
-                    <PinnedRepoCard key={repo} username={username} repo={repo} />
-                ))}
+                <Text style={{ color: "var(--text-strong)", fontWeight: 600, letterSpacing: "0.04em" }}>
+                    GitHub snapshot
+                </Text>
+                <Text style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                    Quick glance at stats and language mix across recent work.
+                </Text>
+                <GitHubStatsCard variant="stats" style={{ width: "100%" }} />
+            </div>
+            <div
+                style={{
+                    display: "grid",
+                    gap: "0.65rem",
+                    padding: "1.25rem",
+                    borderRadius: 18,
+                    border: "1px solid var(--card-border)",
+                    background: "var(--grad-plum-veil)",
+                    boxShadow: "var(--shadow-soft)",
+                }}
+            >
+                <Text style={{ color: "var(--text-strong)", fontWeight: 600, letterSpacing: "0.04em" }}>
+                    Languages
+                </Text>
+                <GitHubStatsCard variant="top-langs" style={{ width: "100%" }} />
             </div>
         </div>
     );

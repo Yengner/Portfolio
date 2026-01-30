@@ -3,8 +3,27 @@
 import HeroNameParticlesR3F from "./HeroNameParticleR3F";
 import Nav from "./Nav";
 import SocialLinks from "./SocialLinks";
+import { useEffect, useState } from "react";
 
 export default function HeroClient() {
+    const [particleColor, setParticleColor] = useState("#0b1220");
+
+    useEffect(() => {
+        const updateColor = () => {
+            const styles = getComputedStyle(document.documentElement);
+            const next = styles.getPropertyValue("--text-strong").trim();
+            if (next) setParticleColor(next);
+        };
+        updateColor();
+        const media = window.matchMedia("(prefers-color-scheme: dark)");
+        if (media.addEventListener) {
+            media.addEventListener("change", updateColor);
+            return () => media.removeEventListener("change", updateColor);
+        }
+        media.addListener(updateColor);
+        return () => media.removeListener(updateColor);
+    }, []);
+
     return (
         <section
             id="hero"
@@ -19,7 +38,7 @@ export default function HeroClient() {
                 padding: "clamp(5rem, 11vw, 9rem) 1.5rem",
                 paddingBottom: "clamp(12rem, 20vw, 16rem)",
                 gap: "clamp(1.4rem, 2.8vw, 2.6rem)",
-                color: "#e8f0ff",
+                color: "var(--text-strong)",
                 textAlign: "center",
                 zIndex: 1,
             }}
@@ -28,7 +47,7 @@ export default function HeroClient() {
                 @keyframes nav-fade { 0% { opacity: 0; transform: translate(-50%, -12px); } 100% { opacity: 1; transform: translate(-50%, 0); } }
                 @keyframes hero-belt { 0% { opacity: 0; transform: translateY(16px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
                 @keyframes hero-cta { 0% { opacity: 0; transform: translateY(18px); } 100% { opacity: 1; transform: translateY(0); } }
-                .hero-nav a:hover { color: #ffffff; }
+                .hero-nav a:hover { color: var(--foreground); }
             `}</style>
             <Nav />
 
@@ -49,7 +68,7 @@ export default function HeroClient() {
                     revealDurationMs={3700}
                     freeWanderAmp={0.18}
                     freeWanderSpeed={0.22}
-                    color="#3C3242"
+                    color={particleColor}
                 />
             </div>
 
@@ -60,7 +79,7 @@ export default function HeroClient() {
                     background: "transparent",
                     boxShadow: "none",
                     backdropFilter: "none",
-                    color: "#4B4452",
+                    color: "var(--text-muted)",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     fontSize: "0.8rem",
@@ -73,8 +92,8 @@ export default function HeroClient() {
             >
                 {[
                     "Software Engineer",
-                    "Student",
-                    "Backend Development",
+                    "Backend Systems",
+                    "Data Pipelines",
                     "Cloud Operations",
                 ].map((label, idx, arr) => (
                     <span key={label} style={{ display: "inline-flex", alignItems: "center", gap: "0.65rem" }}>
@@ -85,8 +104,8 @@ export default function HeroClient() {
                                     width: 8,
                                     height: 8,
                                     borderRadius: "50%",
-                                    background: "#38bdf8",
-                                    boxShadow: "0 0 12px rgba(56, 189, 248, 0.75)",
+                                    background: "var(--grad-mauve-accent)",
+                                    boxShadow: "0 0 14px rgba(14, 165, 233, 0.4)",
                                 }}
                                 aria-hidden="true"
                             />
@@ -131,12 +150,12 @@ export default function HeroClient() {
                     style={{
                         padding: "0.75rem 1.9rem",
                         borderRadius: 999,
-                        background: "var(--grad-plum-veil)",
-                        border: "1px solid var(--text-subtle)",
-                        color: "var(--text)",
+                        background: "var(--grad-mauve-accent)",
+                        border: "1px solid var(--card-border)",
+                        color: "var(--foreground)",
                         fontWeight: 600,
                         textDecoration: "none",
-                        boxShadow: "0 20px 40px var(--grad-plum-veil)",
+                        boxShadow: "var(--shadow-strong)",
                         opacity: 0,
                         animation: "hero-cta 1.4s ease 4.4s forwards",
                     }}
@@ -148,8 +167,8 @@ export default function HeroClient() {
                     style={{
                         padding: "0.75rem 1.9rem",
                         borderRadius: 999,
-                        border: "1px solid var(--grad-plum-veil)",
-                        color: "var(--text)",
+                        border: "1px solid var(--card-border)",
+                        color: "var(--text-strong)",
                         fontWeight: 500,
                         textDecoration: "none",
                         backdropFilter: "blur(6px)",

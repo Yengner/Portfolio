@@ -22,12 +22,31 @@ const academicColumns = [
 ];
 
 const currentCourses = [
-    { code: "CAI 4002", title: "Introduction To AI" },
-    { code: "COP 4365", title: "Software System Development" },
-    { code: "CNT 4419", title: "Secure Coding" },
-    { code: "CDA 3201", title: "Computer Logic & Design" },
-    { code: "CDA 3201L", title: "Computer Logic & Design Lab" },
-    { code: "ENC 3246", title: "Communication For Engineers" },
+    {
+        code: "CDA 4205L",
+        title: "Computer Architecture",
+        schedule: "9:30am–10:45am MW · CPR 115",
+    },
+    {
+        code: "CDA 4205L",
+        title: "Computer Architecture Lab",
+        schedule: "11:30am–1:15pm W · ENB 214",
+    },
+    {
+        code: "CIS 4212",
+        title: "Privacy-Preserving and Trustworthy Cyber-Infrastructures",
+        schedule: "2:00pm–3:15pm MW · EDU 115",
+    },
+    {
+        code: "CIS 4930",
+        title: "Deep Reinforcement Learning",
+        schedule: "11:00am–1:45pm F · SOC 150",
+    },
+    {
+        code: "COT 4400",
+        title: "Analysis Of Algorithms",
+        schedule: "8:00am–10:45am F · CIS 1048",
+    },
 ];
 
 export default function EducationPage() {
@@ -50,7 +69,7 @@ export default function EducationPage() {
                     overlayProps={{
                         blur: 8,
                         opacity: 0.4,
-                        color: "rgba(60, 50, 66, 0.35)",
+                        color: "rgba(15, 23, 42, 0.4)",
                     }}
                     styles={{
                         header: { borderBottom: "1px solid var(--text-subtle)", paddingBottom: "0.75rem" },
@@ -59,24 +78,30 @@ export default function EducationPage() {
                         content: {
                             background: "var(--grad-mauve-mist)",
                             border: "1px solid var(--text-subtle)",
-                            boxShadow: "0 28px 60px rgba(60, 50, 66, 0.22)",
+                            boxShadow: "var(--shadow-strong)",
                         },
                     }}
                 >
                     <Stack gap="md">
                         {currentCourses.map((course) => (
                             <Group
-                                key={course.code}
+                                key={`${course.code}-${course.title}`}
                                 justify="space-between"
                                 style={{
                                     padding: "0.75rem 1rem",
                                     borderRadius: 14,
-                                    border: "1px solid var(--text-subtle)",
+                                    border: "1px solid var(--card-border)",
                                     background: "var(--grad-plum-veil)",
+                                    alignItems: "flex-start",
                                 }}
                             >
                                 <Text style={{ color: "var(--text-strong)", fontWeight: 600 }}>{course.code}</Text>
-                                <Text style={{ color: "var(--text)", fontSize: "0.95rem" }}>{course.title}</Text>
+                                <div style={{ display: "grid", gap: "0.25rem", textAlign: "right" }}>
+                                    <Text style={{ color: "var(--text)", fontSize: "0.95rem" }}>{course.title}</Text>
+                                    <Text style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
+                                        {course.schedule}
+                                    </Text>
+                                </div>
                             </Group>
                         ))}
                     </Stack>
@@ -138,20 +163,20 @@ export default function EducationPage() {
                                     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
                                 }}
                             >
-                                {academicColumns.map((column) => (
-                                    <div
-                                        key={column.items[0].label}
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            gap: "0.6rem",
-                                            background: "var(--grad-mauve-mist)",
-                                            border: "1px solid var(--text-subtle)",
-                                            boxShadow: "0 12px 28px rgba(60, 50, 66, 0.12)",
-                                            borderRadius: 14,
-                                            padding: "1rem 1.1rem",
-                                        }}
-                                    >
+                                    {academicColumns.map((column) => (
+                                        <div
+                                            key={column.items[0].label}
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                gap: "0.6rem",
+                                                background: "var(--grad-mauve-mist)",
+                                                border: "1px solid var(--text-subtle)",
+                                                boxShadow: "var(--shadow-soft)",
+                                                borderRadius: 14,
+                                                padding: "1rem 1.1rem",
+                                            }}
+                                        >
                                         <div style={{ display: "grid", gap: "0.5rem" }}>
                                             {column.items.map((item) => (
                                                 <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
@@ -178,7 +203,7 @@ export default function EducationPage() {
                                     root: {
                                         background: 'var(--grad-mauve-accent)',
                                         color: 'var(--foreground)',
-                                        border: '1px solid rgba(60, 50, 66, 0.2)',
+                                        border: '1px solid var(--card-border)',
                                     },
                                 }}
                                 style={{ alignSelf: "flex-start" }}

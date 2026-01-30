@@ -193,15 +193,15 @@ export default function FeaturedProjects() {
                         width: 12,
                         height: 12,
                         borderRadius: 12,
-                        border: '1px solid var(--text-subtle)',
+                        border: '1px solid var(--card-border)',
                         background: 'var(--grad-mauve-mist)',
                         transition: 'all 160ms ease',
                     },
                     control: {
                         color: 'var(--text-strong)',
-                        background: 'var(--grad-lavender-drift)',
+                        background: 'var(--grad-mauve-mist)',
                         borderRadius: 999,
-                        border: '1px solid rgba(60, 50, 66, 0.18)',
+                        border: '1px solid var(--card-border)',
                     },
                 }}
             >
@@ -240,9 +240,9 @@ export default function FeaturedProjects() {
                                                     height: '100%',
                                                     overflow: 'hidden',
                                                     borderRadius: 18,
-                                                    border: '1px solid rgba(60, 50, 66, 0.18)',
+                                                    border: '1px solid var(--card-border)',
                                                     background: 'var(--grad-plum-veil)',
-                                                    boxShadow: '0 12px 26px rgba(60, 50, 66, 0.16)',
+                                                    boxShadow: 'var(--shadow-soft)',
                                                     aspectRatio: '14 / 8',
                                                     padding: 0,
                                                     cursor: 'zoom-in',
@@ -288,8 +288,8 @@ export default function FeaturedProjects() {
                                             style={{
                                                 padding: '0.35rem 0.6rem',
                                                 borderRadius: 10,
-                                                background: 'rgba(156, 144, 160, 0.15)',
-                                                border: '1px solid var(--text-subtle)',
+                                                background: 'var(--grad-lavender-drift)',
+                                                border: '1px solid var(--card-border)',
                                                 color: 'var(--text-strong)',
                                                 fontSize: '0.75rem',
                                                 letterSpacing: '0.02em',
@@ -315,15 +315,15 @@ export default function FeaturedProjects() {
                                                     background:
                                                         link.variant === 'subtle'
                                                             ? 'transparent'
-                                                            : 'var(--grad-lavender-drift)',
+                                                            : 'var(--grad-mauve-mist)',
                                                     color:
                                                         link.variant === 'subtle'
                                                             ? 'var(--text)'
                                                             : 'var(--text-strong)',
                                                     border:
                                                         link.variant === 'subtle'
-                                                            ? '1px solid rgba(60, 50, 66, 0.2)'
-                                                            : 'none',
+                                                            ? '1px solid var(--card-border)'
+                                                            : '1px solid var(--card-border)',
                                                 },
                                             }}
                                         >
@@ -377,7 +377,7 @@ export default function FeaturedProjects() {
                                         width: 12,
                                         height: 12,
                                         borderRadius: 12,
-                                        border: "1px solid var(--text-subtle)",
+                                        border: "1px solid var(--card-border)",
                                         background: "var(--grad-lavender-drift)",
                                         transition: "all 160ms ease",
                                     },
@@ -385,7 +385,7 @@ export default function FeaturedProjects() {
                                         color: "var(--text-strong)",
                                         background: "var(--grad-mauve-mist)",
                                         borderRadius: 999,
-                                        border: "1px solid rgba(60, 50, 66, 0.18)",
+                                        border: "1px solid var(--card-border)",
                                         height: 50,
                                         width: 50,
                                     },
@@ -410,7 +410,7 @@ export default function FeaturedProjects() {
                                                    aspectRatio: '16 / 9',
                                                    borderRadius: 18,
                                                    overflow: 'hidden',
-                                                    border: '1px solid rgba(60, 50, 66, 0.18)',
+                                                    border: '1px solid var(--card-border)',
                                                     background: 'var(--grad-plum-veil)',
                                                     // boxShadow: '0 18px 40px rgba(60, 50, 66, 0.18)',
                                                }}
@@ -430,11 +430,11 @@ export default function FeaturedProjects() {
                         {/* RIGHT: Rich details panel */}
                         <Box
                             style={{
-                                border: '1px solid var(--text-subtle)',
+                                border: '1px solid var(--card-border)',
                                 borderRadius: 16,
                                 padding: '1rem',
-                                background: 'var(--grad-lavender-drift)',
-                                boxShadow: '0 18px 38px rgba(60, 50, 66, 0.16)',
+                                background: 'var(--grad-mauve-mist)',
+                                boxShadow: 'var(--shadow-soft)',
                                 height: 'calc(100vh - 140px)',
                                 overflow: 'auto',
                             }}

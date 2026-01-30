@@ -25,19 +25,19 @@ const socialLinks: SocialLink[] = [
         label: "GitHub",
         href: "https://github.com/Yengner",
         icon: SiGithub,
-        color: "#0f172a",
+        color: "var(--text-strong)",
     },
     {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/yengner-bermudez",
         icon: FaLinkedin,
-        color: "#0a3871",
+        color: "var(--particles-color)",
     },
     {
         label: "Email",
         href: "mailto:yengnerb475@gmail.com",
         icon: SiGmail,
-        color: "#0b1d34",
+        color: "var(--particles-link-color)",
         openModal: true,
     },
 ];
@@ -56,7 +56,7 @@ export default function SocialLinks({ orientation = "horizontal", compact = fals
                     alignItems: "center",
                     gap: compact ? "0.4rem" : "0.65rem",
                     padding: 0,
-                    color: "rgba(227, 239, 255, 0.86)",
+                    color: "var(--text-strong)",
                     fontWeight: 600,
                     textDecoration: "none",
                 };
@@ -118,8 +118,8 @@ export default function SocialLinks({ orientation = "horizontal", compact = fals
                     title: { color: "var(--text-strong)", fontWeight: 600 },
                     content: {
                         background: "var(--grad-mauve-mist)",
-                        border: "1px solid var(--text-subtle)",
-                        boxShadow: "0 24px 48px rgba(60, 50, 66, 0.18)",
+                        border: "1px solid var(--card-border)",
+                        boxShadow: "var(--shadow-strong)",
                     },
                 }}
             >

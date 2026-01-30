@@ -18,8 +18,10 @@ export function Section({ id, title, description, children }: { id: string; titl
                     variants={sectionVariant}
                 >
                     <Stack gap="sm">
-                        <Title order={2}>{title}</Title>
-                        {description && <Text c="dimmed">{description}</Text>}
+                        <div className="section-header">
+                            <Title order={2} className="section-title">{title}</Title>
+                            {description && <Text className="section-description">{description}</Text>}
+                        </div>
                         {children}
                     </Stack>
                 </motion.div>

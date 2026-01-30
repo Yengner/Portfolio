@@ -48,7 +48,7 @@ export default function ResumeSection() {
                                         height: 6,
                                         borderRadius: "50%",
                                         background: "var(--grad-mauve-accent)",
-                                        boxShadow: "0 0 10px rgba(60, 50, 66, 0.18)",
+                                        boxShadow: "0 0 12px rgba(14, 165, 233, 0.35)",
                                         flexShrink: 0,
                                     }}
                                 />
@@ -69,7 +69,7 @@ export default function ResumeSection() {
                                 root: {
                                     background: 'var(--grad-mauve-accent)',
                                     color: 'var(--foreground)',
-                                    border: '1px solid rgba(60, 50, 66, 0.18)',
+                                    border: '1px solid var(--card-border)',
                                 },
                             }}
                         >
@@ -86,9 +86,9 @@ export default function ResumeSection() {
                             color="gray"
                             styles={{
                                 root: {
-                                    borderColor: 'var(--text-subtle)',
+                                    borderColor: 'var(--card-border)',
                                     color: 'var(--text-strong)',
-                                    background: 'var(--background)',
+                                    background: 'var(--surface-1)',
                                 },
                             }}
                         >
@@ -102,9 +102,9 @@ export default function ResumeSection() {
                         width: "100%",
                         aspectRatio: "3 / 4",
                         borderRadius: 20,
-                        border: "1px solid var(--text-subtle)",
+                        border: "1px solid var(--card-border)",
                         background: "var(--grad-mauve-mist)",
-                        boxShadow: "0 28px 54px rgba(60, 50, 66, 0.18)",
+                        boxShadow: "var(--shadow-strong)",
                         overflow: "hidden",
                         display: "flex",
                         alignItems: "center",
@@ -115,7 +115,7 @@ export default function ResumeSection() {
                     <iframe
                         src="/Yengner_Bermudez_Resume.pdf#view=FitH"
                         title="Résumé preview"
-                        style={{ width: "100%", height: "100%", border: "none", borderRadius: 12, background: "var(--background)" }}
+                        style={{ width: "100%", height: "100%", border: "none", borderRadius: 12, background: "var(--surface-1)" }}
                     />
                 </div>
             </div>

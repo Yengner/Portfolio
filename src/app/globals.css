@@ -1,39 +1,129 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --text-strong: #3C3242;
-  --text:        #4B4452;
-  --text-muted:  #7E7485;
-  --text-subtle: #A9A0AD;
-  --grad-mauve-mist: linear-gradient(135deg, #F6F4F8 0%, #E8E4EB 100%);
-  --grad-lavender-drift: linear-gradient(135deg, #EEEAF4 0%, #E4E0EA 100%);
-  --grad-plum-veil: linear-gradient(135deg, #EDE9F1 0%, #D9D2E1 100%);
-  /* a touch stronger for primary CTAs */
-  --grad-mauve-accent: linear-gradient(135deg, #9C90A0 0%, #7C717E 100%);
+  --background: #f5f7fb;
+  --foreground: #0b1220;
+  --text-strong: #0b1220;
+  --text: #1f2937;
+  --text-muted: #52606d;
+  --text-subtle: #93a1b0;
+
+  --surface-1: #ffffff;
+  --surface-2: #f2f6fb;
+  --surface-3: #e5ebf2;
+  --card-border: rgba(15, 23, 42, 0.12);
+  --shadow-soft: 0 16px 34px rgba(15, 23, 42, 0.08);
+  --shadow-strong: 0 28px 64px rgba(15, 23, 42, 0.14);
+
+  --grad-mauve-mist: linear-gradient(180deg, #ffffff 0%, #f3f6fb 100%);
+  --grad-lavender-drift: linear-gradient(135deg, rgba(14, 165, 233, 0.14) 0%, rgba(20, 184, 166, 0.14) 100%);
+  --grad-plum-veil: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --grad-mauve-accent: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+
+  --page-bg:
+    radial-gradient(1200px 700px at 10% -10%, rgba(14, 165, 233, 0.18), transparent 60%),
+    radial-gradient(900px 600px at 90% 0%, rgba(20, 184, 166, 0.16), transparent 55%),
+    linear-gradient(180deg, #f5f7fb 0%, #eef3f8 100%);
+
+  --particles-color: #0ea5e9;
+  --particles-link-color: #14b8a6;
+
 }
+
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b0f1a;
+    --foreground: #f8fafc;
 
+    --text-strong: #f8fafc;
+    --text: #d4d9e6;
+    --text-muted: #a3b2c7;
+    --text-subtle: #6b7a90;
+
+    --surface-1: #0f172a;
+    --surface-2: #111827;
+    --surface-3: #1f2937;
+    --card-border: rgba(148, 163, 184, 0.18);
+    --shadow-soft: 0 18px 40px rgba(2, 6, 23, 0.45);
+    --shadow-strong: 0 28px 72px rgba(2, 6, 23, 0.6);
+
+    --grad-mauve-mist: linear-gradient(180deg, #0f172a 0%, #0b1224 100%);
+    --grad-lavender-drift: linear-gradient(135deg, rgba(14, 165, 233, 0.16) 0%, rgba(20, 184, 166, 0.16) 100%);
+    --grad-plum-veil: linear-gradient(135deg, #0b1224 0%, #111827 100%);
+    --grad-mauve-accent: linear-gradient(135deg, #22d3ee 0%, #34d399 100%);
+
+    --page-bg:
+      radial-gradient(1200px 700px at 10% -20%, rgba(14, 165, 233, 0.18), transparent 60%),
+      radial-gradient(900px 600px at 90% 0%, rgba(20, 184, 166, 0.16), transparent 55%),
+      linear-gradient(180deg, #0b0f1a 0%, #0a1222 100%);
+
+    --particles-color: #22d3ee;
+    --particles-link-color: #34d399;
   }
 }
 
+
 body {
-  background: var(--background);
+  background: var(--page-bg);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(14, 165, 233, 0.22);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+}
+
+.section-header {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.section-title {
+  color: var(--text-strong);
+  font-size: clamp(1.7rem, 2.4vw, 2.25rem);
+}
+
+.section-description {
+  color: var(--text-muted);
+  max-width: 720px;
 }
 
 
+#bg-particles {
+  position: fixed;         /* full background */
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;    /* don't block clicks */
+}
 
+/* Make sure the canvas is fully transparent and inherits the page bg */
+#bg-particles canvas {
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+}

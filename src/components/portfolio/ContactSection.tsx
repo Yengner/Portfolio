@@ -49,7 +49,7 @@ export default function ContactSection() {
                                 root: {
                                     background: 'var(--grad-mauve-accent)',
                                     color: 'var(--foreground)',
-                                    border: '1px solid rgba(60, 50, 66, 0.18)',
+                                    border: '1px solid var(--card-border)',
                                 },
                             }}
                         >
@@ -64,9 +64,9 @@ export default function ContactSection() {
                             color="gray"
                             styles={{
                                 root: {
-                                    borderColor: 'var(--text-subtle)',
+                                    borderColor: 'var(--card-border)',
                                     color: 'var(--text-strong)',
-                                    background: 'var(--background)',
+                                    background: 'var(--surface-1)',
                                 },
                             }}
                         >
@@ -88,8 +88,8 @@ export default function ContactSection() {
                     title: { color: "var(--text-strong)", fontWeight: 600 },
                     content: {
                         background: "var(--grad-mauve-mist)",
-                        border: "1px solid var(--text-subtle)",
-                        boxShadow: "0 24px 48px rgba(60, 50, 66, 0.18)",
+                        border: "1px solid var(--card-border)",
+                        boxShadow: "var(--shadow-strong)",
                     },
                 }}
             >

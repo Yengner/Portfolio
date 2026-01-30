@@ -26,7 +26,7 @@ function sampleTextToPoints(
     const {
         canvasWidth = 2250,
         canvasHeight = 300,
-        font = "800 190px system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
+        font = "800 190px \"Space Grotesk\", \"Fraunces\", system-ui, sans-serif",
         step = 2,
         threshold = 40,
         maxPoints = 9000,

@@ -3,6 +3,7 @@
 import HeroClient from "../components/HeroClient";
 import BackgroundParticles from "./BackgroundParticles";
 import ProjectsSection from "./portfolio/ProjectsSection";
+import BackendSystemsSection from "./portfolio/BackendSystemsSection";
 import EducationPage from "./portfolio/EducationSection";
 import ResumeSection from "./portfolio/ResumeSection";
 import ContactSection from "./portfolio/ContactSection";
@@ -15,6 +16,7 @@ export default function HomeClient() {
             <main style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", gap: "3.2rem" }}>
                 <HeroClient />
                 <ProjectsSection />
+                <BackendSystemsSection />
                 <FeaturedProjects />
                 <EducationPage />
                 <ResumeSection />

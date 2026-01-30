@@ -19,9 +19,9 @@ const Shield = ({ alt, src }: BadgeDef) => (
             height: 32,
             display: "block",
             borderRadius: 6,
-            boxShadow: "0 6px 18px rgba(60, 50, 66, 0.14)",
-            background: "var(--background)",
-            border: "1px solid rgba(60, 50, 66, 0.08)",
+            boxShadow: "0 10px 22px rgba(15, 23, 42, 0.12)",
+            background: "var(--surface-1)",
+            border: "1px solid var(--card-border)",
         }}
         loading="lazy"
     />
