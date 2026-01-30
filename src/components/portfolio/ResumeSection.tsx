@@ -20,7 +20,7 @@ export default function ResumeSection() {
     return (
         <Section
             id="resume"
-            title="Résumé"
+            title="Resume"
             description="Grab the latest copy or skim the highlights without leaving the page."
         >
             <div
@@ -34,7 +34,7 @@ export default function ResumeSection() {
             >
                 <Stack gap="md">
                     <Text style={{ color: "var(--text)", lineHeight: 1.6 }}>
-                        I update my résumé each sprint with the latest projects, leadership impact, and the stack shaping my work.
+                        I update my resume each sprint with the latest projects, leadership impact, and the stack shaping my work.
                         Download a PDF for quick sharing or open the live preview on your device.
                     </Text>
                     <div style={{ display: "grid", gap: "0.75rem" }}>
@@ -114,7 +114,7 @@ export default function ResumeSection() {
                 >
                     <iframe
                         src="/Yengner_Bermudez_Resume.pdf#view=FitH"
-                        title="Résumé preview"
+                        title="Resume preview"
                         style={{ width: "100%", height: "100%", border: "none", borderRadius: 12, background: "var(--surface-1)" }}
                     />
                 </div>

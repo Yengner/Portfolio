@@ -160,7 +160,7 @@ export default function HeroClient() {
                         animation: "hero-cta 1.4s ease 4.4s forwards",
                     }}
                 >
-                    View résumé
+                    View resume
                 </a>
                 <a
                     href="#featured-projects"

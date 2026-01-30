@@ -5,7 +5,7 @@ const topLinks = [
     { href: "#backend", label: "Backend" },
     { href: "#featured-projects", label: "Projects" },
     { href: "#education", label: "Education" },
-    { href: "#resume", label: "Résumé" },
+    { href: "#resume", label: "Resume" },
     { href: "#contact", label: "Contact" },
 ];
 

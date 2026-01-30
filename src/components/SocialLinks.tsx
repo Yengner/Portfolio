@@ -35,7 +35,7 @@ const socialLinks: SocialLink[] = [
     },
     {
         label: "Email",
-        href: "mailto:yengnerb475@gmail.com",
+        href: "mailto:yengner.bermudez.dev@gmail.com",
         icon: SiGmail,
         color: "var(--particles-link-color)",
         openModal: true,
@@ -125,7 +125,7 @@ export default function SocialLinks({ orientation = "horizontal", compact = fals
             >
                 <Stack gap="sm" maw={360}>
                     <Text style={{ color: "var(--text)" }}>
-                        Personal: <strong>yengnerb475@gmail.com</strong>
+                        Personal: <strong>yengner.bermudez.dev@gmail.com</strong>
                     </Text>
                     <Text style={{ color: "var(--text)" }}>
                         School: <strong>yengnerb@usf.edu</strong>

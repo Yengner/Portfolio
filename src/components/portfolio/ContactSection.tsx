@@ -57,7 +57,7 @@ export default function ContactSection() {
                         </Button>
                         <Button
                             component="a"
-                            href="https://calendly.com/yengnerb-usf/30min"
+                            href="https://calendly.com/yengnerb-usf/usf-shpe-meeting"
                             size="md"
                             radius="xl"
                             variant="outline"
@@ -95,7 +95,7 @@ export default function ContactSection() {
             >
                 <Stack gap="sm" maw={360}>
                     <Text style={{ color: "var(--text)" }}>
-                        Personal: <strong>yengnerb475@gmail.com</strong>
+                        Personal: <strong>yengner.bermudez.dev@gmail.com</strong>
                     </Text>
                     <Text style={{ color: "var(--text)" }}>
                         School: <strong>yengnerb@usf.edu</strong>
