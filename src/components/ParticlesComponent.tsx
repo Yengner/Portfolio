@@ -1,138 +1,193 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
-import type { CSSProperties } from "react";
-import { OutMode, type Engine, type ISourceOptions } from "@tsparticles/engine";
+import Image from "next/image";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { animateParticleCanvas, seededRandom } from "@/lib/particleCanvas";
 
 type Props = {
-    svg: string;                    // e.g. "/usf.svg"
-    width?: number;                 // px
-    height?: number;                // px
-    color?: string;
-    scale?: number;                 // polygon scale relative to canvas
-    mode?: "outline" | "filled";    // choose look
-    className?: string;
-    style?: CSSProperties;
+  svg?: string;
+  text?: string;
+  label?: string;
+  width?: number;
+  height?: number;
+  color?: string;
+  className?: string;
+  style?: CSSProperties;
 };
+type Dot = { x: number; y: number; tx: number; ty: number; radius: number };
 
-export default function USFParticles({
-    svg,
-    width = 320,
-    height = 140,
-    color = "#8EDBFF",
-    scale = 0.9,         // start near 0.9; adjust per logo aspect
-    mode = "outline",
-    className,
-    style,
+// Reuses the original SVG asset and canvas-sampling approach. Pixel bounds are
+// measured so the mark stays centered at every width, without SVG offsets.
+export default function ParticleMark({
+  svg,
+  text,
+  label,
+  width = 320,
+  height = 140,
+  color = "var(--accent)",
+  className = "",
+  style,
 }: Props) {
-    const [ready, setReady] = useState(false);
-    useEffect(() => {
-        let mounted = true;
-        initParticlesEngine(async (engine: Engine) => {
-            await loadSlim(engine);
-            await loadPolygonMaskPlugin(engine);
-        }).then(() => mounted && setReady(true));
-        return () => { mounted = false; };
-    }, []);
-    // const options: ISourceOptions = useMemo(() => ({
-    //     fullScreen: false, detectRetina: true, fpsLimit: 60, interactivity:
-    //     {
-    //         modes: { bubble: { distance: 28, duration: 0.8, opacity: 0.6, size: 2.2, }, },
-    //     }, particles: {
-    //         number: { value: 650 }, size: { value: { min: 0.22, max: 0.4 } },
-    //         color: { value: color }, opacity: { value: { min: 0.28, max: 0.72 }, animation: { enable: true, speed: 0.5, sync: true }, },
-    //         links: {
-    //             enable: true, distance: 50, opacity: 0.08, width: 0.05, color,
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pointer = useRef({ x: -1000, y: -1000 });
+  const scatter = useRef(0);
+  const [ready, setReady] = useState(false);
+  const name = label || text || "USF logo";
 
-    //         },
-    //         move: { enable: true, speed: { min: 0.22, max: 0.62 }, direction: "none", outModes: { default: OutMode.bounce }, },
-    //         shape: { type: "circle" },
-    //     }, polygon: {
-    //         enable: true, type: "inline", inline: { arrangement: "equidistant" }, move:
-    //             { radius: 1, type: "path" }, scale, url: svg, draw: { enable: false }, position: { x: 20, y: 10 },
-    //     },
-    // }), [color, scale, svg]);
-    // if (!ready) return null;
-    const options: ISourceOptions = useMemo(() => {
-        const common: ISourceOptions = {
-            fullScreen: false,
-            detectRetina: true,
-            fpsLimit: 60,
-            interactivity: {
-                events: {
-                    onHover: { enable: true, mode: "bubble" },
-                    resize: { enable: false },
-                },
-                modes: {
-                    bubble: { distance: 25, duration: 0.9, size: 2.5, opacity: 0.6 },
-                },
-            },
-            particles: {
-                number: { value: 2050 },
-                size: { value: { min: 0.8, max: 1.1 } },
-                // size: { value: { min: 0.48, max: 0.85 } },
-                color: { value: color },
-                opacity: { value: { min: 0.88, max: 0.95 } },
-                // ✨ Turn OFF link lines to prevent cross-letter webs:
-                links: { enable: false, distance: 11, opacity: 0.72, width: 0.72, color },
-                move: {
-                    enable: mode === "filled",      // outline static; outline gently alive
-                    speed: mode === "filled" ? { min: 0.1, max: 0.35 } : 0,
-                    outModes: { default: OutMode.bounce },
-                },
-                shape: { type: "polygon", },
-                // number: { value: 650 }, size: { value: { min: 0.22, max: 0.4 } },
-                // color: { value: color }, opacity: { value: { min: 0.28, max: 0.72 }, animation: { enable: true, speed: 0.5, sync: true }, },
-                // links: {
-                //     enable: true, distance: 50, opacity: 0.08, width: 0.05, color,
-                // },
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    let cancelled = false;
+    let stop = () => {};
+    const source = document.createElement("canvas");
+    source.width = 900;
+    source.height = text ? 160 : 900;
+    const context = source.getContext("2d", { willReadFrequently: true });
+    if (!context) return;
 
-            },
-            polygon: {
-                enable: true,
-                // Outline vs filled:
-                type: mode === "outline" ? "inline" : "inside",
-                inline: { arrangement: "equidistant" },   // even spacing along paths
-                move: {
-                    // Keep dots tight to the shape (no wandering off the logo)
-                    radius: mode === "outline" ? 0.2 : 0.35,
-                    // Remove "type: 'path'" so they DO NOT run around the path
-                    // (that causes jitter/crossing visuals on complex letters)
-                },
-                // Center and scale the SVG *within the canvas*
-                position: { x: 6, y: -55 }, // percent of canvas; center
-                scale,
-                url: svg,
-                // draw: {
-                //     enable: true, // set true to show a faint outline for debugging
-                //     stroke: { color: "#ffffff", width: 1, opacity: 1 },
-                // },
+    function initialize() {
+      if (!context || !canvas || cancelled) return;
+      const pixels = context.getImageData(
+        0,
+        0,
+        source.width,
+        source.height,
+      ).data;
+      const candidates: { x: number; y: number }[] = [];
+      let left = source.width,
+        top = source.height,
+        right = 0,
+        bottom = 0;
+      for (let y = 0; y < source.height; y += 2)
+        for (let x = 0; x < source.width; x += 2) {
+          const i = (y * source.width + x) * 4;
+          // Ignore transparent padding and white negative-space paths in the logo.
+          if (
+            pixels[i + 3] > 100 &&
+            pixels[i] + pixels[i + 1] + pixels[i + 2] < 710
+          ) {
+            candidates.push({ x, y });
+            left = Math.min(left, x);
+            right = Math.max(right, x);
+            top = Math.min(top, y);
+            bottom = Math.max(bottom, y);
+          }
+        }
+      if (!candidates.length) return;
+      let dots: Dot[] = [];
+      stop = animateParticleCanvas(
+        canvas,
+        (ctx, frame) => {
+          const { width, height, delta, reducedMotion } = frame;
+          ctx.clearRect(0, 0, width, height);
+          ctx.fillStyle = getComputedStyle(canvas).color;
+          const gather = 1 - Math.exp(-3.8 * delta);
+          for (const dot of dots) {
+            if (reducedMotion) {
+              dot.x = dot.tx;
+              dot.y = dot.ty;
+            } else {
+              if (scatter.current > 0) {
+                const random = seededRandom(
+                  Math.round(dot.tx * 37 + dot.ty * 53) + scatter.current,
+                );
+                dot.x = random() * width;
+                dot.y = random() * height;
+              }
+              const dx = dot.x - pointer.current.x,
+                dy = dot.y - pointer.current.y;
+              const distance = Math.hypot(dx, dy);
+              if (distance < 42 && distance > 0.1) {
+                const push = (1 - distance / 42) * 160 * delta;
+                dot.x += (dx / distance) * push;
+                dot.y += (dy / distance) * push;
+              }
+              dot.x += (dot.tx - dot.x) * gather;
+              dot.y += (dot.ty - dot.y) * gather;
+            }
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          scatter.current = 0;
+        },
+        (width, height) => {
+          const random = seededRandom(47);
+          const scale = Math.min(
+            (width - 12) / (right - left + 1),
+            (height - 12) / (bottom - top + 1),
+          );
+          const offsetX = (width - (right - left) * scale) / 2;
+          const offsetY = (height - (bottom - top) * scale) / 2;
+          const mobile = matchMedia("(max-width: 640px)").matches;
+          const count = Math.min(
+            candidates.length,
+            text ? (mobile ? 950 : 1400) : mobile ? 1400 : 2200,
+          );
+          dots = Array.from({ length: count }, () => {
+            const point = candidates[Math.floor(random() * candidates.length)];
+            return {
+              tx: (point.x - left) * scale + offsetX,
+              ty: (point.y - top) * scale + offsetY,
+              x: random() * width,
+              y: random() * height,
+              radius: text ? 0.7 : 0.85,
+            };
+          });
+        },
+      );
+      setReady(true);
+    }
+    if (text) {
+      context.fillStyle = "#14233c";
+      context.font = "bold 100px Arial";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.fillText(text, 450, 80, 880);
+      initialize();
+    } else if (svg) {
+      const image = new window.Image();
+      image.onload = () => {
+        if (!cancelled) {
+          context.drawImage(image, 0, 0, source.width, source.height);
+          initialize();
+        }
+      };
+      image.src = svg;
+    }
+    return () => {
+      cancelled = true;
+      stop();
+    };
+  }, [svg, text]);
 
-            },
+  return (
+    <button
+      type="button"
+      className={`particle-mark ${ready ? "is-ready" : ""} ${className}`}
+      style={{ width, height, color, ...style }}
+      aria-label={`Scatter and reassemble ${name} particles`}
+      onPointerMove={(event) => {
+        const box = event.currentTarget.getBoundingClientRect();
+        pointer.current = {
+          x: event.clientX - box.left,
+          y: event.clientY - box.top,
         };
-        return common;
-    }, [svg, color, scale, mode]);
-
-    if (!ready) return null;
-
-    // Wrap in a sized container; Particles fills this box.
-    return (
-        <div
-            className={className}
-            style={{
-                width,
-                height,
-                position: "relative",
-                overflow: "hidden",
-                borderRadius: 12,
-                // optional: glassy background here if you want
-                ...style,
-            }}
-        >
-            <Particles id="usf-logo-particles" options={options} style={{ width: "100%", height: "100%" }} />
-        </div>
-    );
+      }}
+      onPointerLeave={() => {
+        pointer.current = { x: -1000, y: -1000 };
+      }}
+      onPointerUp={() => {
+        pointer.current = { x: -1000, y: -1000 };
+      }}
+      onClick={() => {
+        scatter.current = Date.now() % 100000;
+      }}
+    >
+      <span className="particle-mark-fallback" aria-hidden="true">
+        {svg ? <Image src={svg} alt="" fill sizes="320px" /> : text}
+      </span>
+      <canvas ref={canvasRef} aria-hidden="true" />
+    </button>
+  );
 }

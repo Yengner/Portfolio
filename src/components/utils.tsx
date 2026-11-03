@@ -1,31 +1,34 @@
-import { Box, Container, Stack, Text, Title } from "@mantine/core";
-import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
-export const sectionVariant = {
-    hidden: { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0 },
-};
-
-export function Section({ id, title, description, children }: { id: string; title: string; description?: string; children?: React.ReactNode; }) {
-    return (
-        <Box id={id} component="section" py="xl">
-            <Container size="lg">
-                <motion.div
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.8 }}
-                    variants={sectionVariant}
-                >
-                    <Stack gap="sm">
-                        <div className="section-header">
-                            <Title order={2} className="section-title">{title}</Title>
-                            {description && <Text className="section-description">{description}</Text>}
-                        </div>
-                        {children}
-                    </Stack>
-                </motion.div>
-            </Container>
-        </Box>
-    );
+export function Section({
+  id,
+  title,
+  description,
+  children,
+  number,
+}: {
+  id: string;
+  title: string;
+  description?: string;
+  children?: ReactNode;
+  number?: string;
+}) {
+  return (
+    <section
+      id={id}
+      className="section container"
+      aria-labelledby={`${id}-title`}
+    >
+      <header className="section-header">
+        <div className="section-heading">
+          <span className="section-number" aria-hidden="true">
+            {number}
+          </span>
+          <h2 id={`${id}-title`}>{title}</h2>
+        </div>
+        {description && <p className="section-description">{description}</p>}
+      </header>
+      {children}
+    </section>
+  );
 }

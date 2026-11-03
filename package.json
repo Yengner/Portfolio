@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.7.0",
@@ -18,22 +19,18 @@
     "@mantine/hooks": "^8.3.1",
     "@mantine/modals": "^8.3.1",
     "@mantine/spotlight": "^8.3.1",
-    "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.3.0",
+    "@react-three/fiber": "^9.8.2",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/plugin-polygon-mask": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
-    "d3-force-3d": "^3.0.6",
     "dayjs": "^1.11.18",
     "embla-carousel": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.12",
-    "next": "^16.1.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-force-graph": "^1.29.3",
-    "react-force-graph-2d": "^1.29.0",
+    "next": "^16.4.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-icons": "^5.5.0",
     "recharts": "^3.2.0",
     "three": "^0.180.0"
@@ -44,9 +41,15 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.180.0",
     "eslint": "^9",
-    "eslint-config-next": "15.5.3",
+    "eslint-config-next": "^16.4.4",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "engines": {
+    "node": ">=24.22.2 <25",
+    "npm": ">=12.2.1 <13"
+  },
+  "packageManager": "npm@12.2.1"
 }

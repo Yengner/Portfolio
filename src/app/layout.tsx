@@ -1,26 +1,22 @@
-import '@mantine/core/styles.css';
-import './globals.css';
-
-import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
-import { Fraunces, Space_Grotesk } from "next/font/google";
-
-const sansFont = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const displayFont = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-export const metadata = {
-  title: 'Yengner Bermudez',
-  description: 'I have followed setup instructions carefully',
+import "@mantine/core/styles.css";
+import "./globals.css";
+import {
+  ColorSchemeScript,
+  MantineProvider,
+  mantineHtmlProps,
+} from "@mantine/core";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Yengner Bermudez | Backend & Infrastructure Engineer",
+  description:
+    "Backend and infrastructure engineer, former Citi Technology Summer Analyst, and founder of DeepVisor. Explore enterprise container platforms, data pipelines, and independent products.",
+  openGraph: {
+    title: "Yengner Bermudez | Backend & Infrastructure Engineer",
+    description:
+      "Enterprise systems. Reliable infrastructure. Products built with intent.",
+    type: "website",
+  },
 };
-
 export default function RootLayout({
   children,
 }: {
@@ -29,19 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript defaultColorScheme="auto" />
       </head>
-      <body className={`${sansFont.variable} ${displayFont.variable}`}>
-        <MantineProvider
-          defaultColorScheme="auto"
-          theme={{
-            fontFamily: "var(--font-sans)",
-            headings: { fontFamily: "var(--font-display)" },
-            primaryColor: "teal",
-          }}
-        >
-          {children}
-        </MantineProvider>
+      <body>
+        <MantineProvider defaultColorScheme="auto">{children}</MantineProvider>
       </body>
     </html>
   );

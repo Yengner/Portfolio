@@ -339,7 +339,7 @@ function PointsLayer({
     const revealStart = React.useRef(0);
     const revealEnd = React.useRef(0);
 
-    useFrame((_, delta) => {
+    useFrame(() => {
         const pts = pointsRef.current;
         const from = fromRef.current;
         const targets = targetsRef.current;

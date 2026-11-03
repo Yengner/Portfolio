@@ -1,137 +1,39 @@
 "use client";
-
-import type { CSSProperties } from "react";
-import { motion } from "framer-motion";
-import { SiGithub, SiGmail } from "@icons-pack/react-simple-icons";
-import { FaLinkedin } from "react-icons/fa";
-import { Modal, Stack, Text } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-
-type SocialLink = {
-    label: string;
-    href: string;
-    icon: typeof SiGithub | typeof FaLinkedin;
-    color: string;
-    openModal?: boolean;
-};
-
-type SocialLinksProps = {
-    orientation?: "horizontal" | "vertical";
-    compact?: boolean;
-};
-
-const socialLinks: SocialLink[] = [
-    {
-        label: "GitHub",
-        href: "https://github.com/Yengner",
-        icon: SiGithub,
-        color: "var(--text-strong)",
-    },
-    {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/in/yengner-bermudez",
-        icon: FaLinkedin,
-        color: "var(--particles-color)",
-    },
-    {
-        label: "Email",
-        href: "mailto:yengner.bermudez.dev@gmail.com",
-        icon: SiGmail,
-        color: "var(--particles-link-color)",
-        openModal: true,
-    },
+import { FiGithub, FiLinkedin, FiMail, FiArrowUpRight } from "react-icons/fi";
+const links = [
+  { label: "GitHub", href: "https://github.com/Yengner", Icon: FiGithub },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/yengner-bermudez",
+    Icon: FiLinkedin,
+  },
+  {
+    label: "Email",
+    href: "mailto:yengner.bermudez.dev@gmail.com",
+    Icon: FiMail,
+  },
 ];
-
-export default function SocialLinks({ orientation = "horizontal", compact = false }: SocialLinksProps) {
-    const dirStyle: CSSProperties =
-        orientation === "vertical"
-            ? { display: "grid", gap: "0.7rem" }
-            : { display: "flex", flexWrap: "wrap", gap: "0.7rem", justifyContent: "center" };
-    const [emailModalOpen, emailModal] = useDisclosure(false);
-    return (
-        <div style={dirStyle}>
-            {socialLinks.map((social, index) => {
-                const sharedStyle: CSSProperties = {
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: compact ? "0.4rem" : "0.65rem",
-                    padding: 0,
-                    color: "var(--text-strong)",
-                    fontWeight: 600,
-                    textDecoration: "none",
-                };
-
-                if (social.openModal) {
-                    return (
-                        <motion.button
-                            key={social.label}
-                            type="button"
-                            onClick={emailModal.open}
-                            style={{
-                                ...sharedStyle,
-                                background: "transparent",
-                                border: "none",
-                                cursor: "pointer",
-                            }}
-                            initial={{ opacity: 0, y: 0 }}
-                            animate={{ opacity: 0.8, y: -5 }}
-                            transition={{ delay: 2 * index, duration: 5, ease: "easeOut" }}
-                            whileHover={{ y: -2, scale: 1.04 }}
-                            whileTap={{ scale: 0.97 }}
-                            aria-label="Email"
-                        >
-                            <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-                                <social.icon size={compact ? 18 : 35} color={social.color} />
-                            </span>
-                        </motion.button>
-                    );
-                }
-
-                return (
-                    <motion.a
-                        key={social.label}
-                        href={social.href}
-                        target={social.href.startsWith("http") ? "_blank" : undefined}
-                        rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        style={sharedStyle}
-                        initial={{ opacity: 0, y: 0 }}
-                        animate={{ opacity: 0.8, y: -5 }}
-                        transition={{ delay: 2 * index, duration: 5, ease: "easeOut" }}
-                        whileHover={{ y: -2, scale: 1.04 }}
-                        whileTap={{ scale: 0.97 }}
-                    >
-                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-                            <social.icon size={compact ? 18 : 35} color={social.color} />
-                        </span>
-                    </motion.a>
-                );
-            })}
-            <Modal
-                opened={emailModalOpen}
-                onClose={emailModal.close}
-                title="Reach out"
-                centered
-                radius="lg"
-                overlayProps={{ blur: 6, opacity: 0.35 }}
-                styles={{
-                    header: { borderBottom: "1px solid var(--text-subtle)" },
-                    title: { color: "var(--text-strong)", fontWeight: 600 },
-                    content: {
-                        background: "var(--grad-mauve-mist)",
-                        border: "1px solid var(--card-border)",
-                        boxShadow: "var(--shadow-strong)",
-                    },
-                }}
-            >
-                <Stack gap="sm" maw={360}>
-                    <Text style={{ color: "var(--text)" }}>
-                        Personal: <strong>yengner.bermudez.dev@gmail.com</strong>
-                    </Text>
-                    <Text style={{ color: "var(--text)" }}>
-                        School: <strong>yengnerb@usf.edu</strong>
-                    </Text>
-                </Stack>
-            </Modal>
-        </div>
-    );
+export default function SocialLinks({
+  orientation = "horizontal",
+  compact = false,
+}: {
+  orientation?: "horizontal" | "vertical";
+  compact?: boolean;
+}) {
+  return (
+    <div className={`social-links ${orientation} ${compact ? "compact" : ""}`}>
+      {links.map(({ label, href, Icon }) => (
+        <a
+          key={label}
+          href={href}
+          target={href.startsWith("http") ? "_blank" : undefined}
+          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+        >
+          <Icon aria-hidden="true" />
+          {label}
+          <FiArrowUpRight className="social-arrow" aria-hidden="true" />
+        </a>
+      ))}
+    </div>
+  );
 }
