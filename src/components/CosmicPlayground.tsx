@@ -5,12 +5,12 @@ import { FiPause, FiPlay } from "react-icons/fi";
 import ParticleMark from "./ParticlesComponent";
 import { animateParticleCanvas, seededRandom } from "@/lib/particleCanvas";
 
-type Mode = "gravity" | "markets" | "probability";
+type Mode = "space" | "markets" | "probability";
 const views: { id: Mode; label: string; caption: string }[] = [
   {
-    id: "gravity",
-    label: "Gravity",
-    caption: "A fascination with space, gravity, and the unknown.",
+    id: "space",
+    label: "space",
+    caption: "A fascination with software, entropy, and infrastructure.",
   },
   {
     id: "markets",
@@ -70,7 +70,7 @@ function CosmicCanvas({ mode, paused }: { mode: Mode; paused: boolean }) {
           ctx.arc(star.x * w, star.y * h, star.radius, 0, Math.PI * 2);
           ctx.fill();
         }
-        if (mode === "gravity") {
+        if (mode === "space") {
           const cx =
             w * 0.5 +
             (pointer.current.x - 0.5) * (frame.reducedMotion ? 0 : 10);
@@ -261,7 +261,7 @@ function CosmicCanvas({ mode, paused }: { mode: Mode; paused: boolean }) {
 }
 
 export default function CosmicPlayground() {
-  const [mode, setMode] = useState<Mode>("gravity");
+  const [mode, setMode] = useState<Mode>("space");
   const [paused, setPaused] = useState(false);
   return (
     <figure className="cosmic-playground" aria-labelledby="cosmic-title">
