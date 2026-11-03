@@ -205,14 +205,19 @@ svg {
   display: none;
 }
 #bg-particles {
-  position: absolute;
-  inset: 0 0 auto;
+  position: fixed;
+  inset: 0;
   width: 100%;
-  height: 900px;
+  height: 100vh;
+  height: 100dvh;
   pointer-events: none;
   z-index: 0;
-  mask-image: linear-gradient(#000 0%, #000 65%, transparent);
+  opacity: 1;
 }
+#bg-particles[data-region="content"] {
+  opacity: 0.75;
+}
+
 .hero {
   position: relative;
   z-index: 1;
@@ -369,7 +374,7 @@ h1 > span:not(.title-period) {
 }
 .content-sections {
   position: relative;
-  background: var(--background);
+  background: transparent;
 }
 .section {
   padding-block: 83px;
@@ -898,58 +903,6 @@ h2 {
   min-height: 30px;
   transition: color 0.2s;
 }
-.secondary-heading {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin: 36px 0 19px;
-}
-.heading-rule {
-  flex: 1;
-  border-top: 1px solid var(--card-border);
-}
-.secondary-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-.secondary-card {
-  border: 1px solid var(--card-border);
-  border-radius: 7px;
-  display: flex;
-  gap: 19px;
-  padding: 24px;
-  background: var(--surface-1);
-}
-.secondary-icon {
-  flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--card-border);
-  border-radius: 6px;
-  background: var(--surface-2);
-  font-size: 27px;
-  color: var(--accent);
-}
-.secondary-card .mono {
-  font-size: 8px;
-}
-.secondary-card h3 {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 5px 0;
-}
-.secondary-card p {
-  font-size: 13px;
-  line-height: 1.8;
-  margin-bottom: 14px;
-}
-.secondary-card .text-link {
-  margin-top: 13px;
-}
 .skills-grid {
   display: grid;
   grid-template-columns: 1.1fr 1.2fr 0.9fr;
@@ -1113,7 +1066,7 @@ h2 {
 .contact-section h2 span {
   color: var(--accent);
 }
-.contact-section > p:not(.eyebrow) {
+.contact-section .contact-copy > p:not(.eyebrow) {
   font-size: 13px;
   color: var(--text-muted);
   line-height: 1.8;
@@ -1323,10 +1276,6 @@ h2 {
     gap: 6px;
     margin-top: 3px;
   }
-  #bg-particles {
-    height: 1000px;
-    opacity: 0.75;
-  }
   .section {
     padding-block: 54px;
   }
@@ -1469,7 +1418,6 @@ h2 {
     margin-top: 3px;
   }
   .featured-grid,
-  .secondary-grid,
   .skills-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1490,16 +1438,6 @@ h2 {
   }
   .project-metric {
     flex-wrap: nowrap;
-  }
-  .secondary-card {
-    padding: 21px;
-    gap: 16px;
-  }
-  .secondary-card p {
-    font-size: 12px;
-  }
-  .secondary-heading {
-    margin-top: 29px;
   }
   .skill-card {
     padding: 24px;
@@ -1561,7 +1499,7 @@ h2 {
   .contact-section {
     padding-block: 60px;
   }
-  .contact-section > p:not(.eyebrow) {
+  .contact-section .contact-copy > p:not(.eyebrow) {
     font-size: 12px;
   }
   .site-footer {
@@ -1847,4 +1785,462 @@ h2 {
   .usf-particle-block > span {
     font-size: 8px;
   }
+}
+
+/* EdgeFoundry leads the project section with an attributed historical result. */
+.edge-spotlight {
+  --spotlight-gold: #8b641f;
+  --spotlight-soft: #f5efdf;
+  --spotlight-line: #d9c69e;
+  --spotlight-button-ink: #fff;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  position: relative;
+  padding: 36px;
+  margin-bottom: 28px;
+  border: 1px solid var(--spotlight-line);
+  border-radius: 12px;
+  background: linear-gradient(
+    115deg,
+    var(--surface-1) 40%,
+    var(--spotlight-soft)
+  );
+}
+.edge-spotlight-copy {
+  min-width: 0;
+}
+.edge-spotlight-eyebrow {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  color: var(--spotlight-gold);
+  font:
+    10px Consolas,
+    monospace;
+  letter-spacing: 0.1em;
+  margin-bottom: 21px;
+}
+.edge-spotlight-eyebrow > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--spotlight-gold);
+  box-shadow: 0 0 0 4px var(--spotlight-soft);
+}
+.edge-spotlight h3 {
+  font-size: clamp(31px, 3.5vw, 42px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+.edge-spotlight h3 > span {
+  color: var(--spotlight-gold);
+}
+.edge-spotlight-lead {
+  color: var(--text-strong);
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+  margin-top: 10px;
+}
+.edge-spotlight-description {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 16px 0 20px;
+}
+.edge-spotlight-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  min-height: 46px;
+  padding: 12px 18px;
+  margin-top: 26px;
+  border-radius: 5px;
+  background: var(--spotlight-gold);
+  color: var(--spotlight-button-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+.edge-spotlight-cta:hover {
+  filter: brightness(1.08);
+}
+.edge-spotlight-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 10px;
+}
+.edge-spotlight-preview svg {
+  width: 11px;
+  color: var(--spotlight-gold);
+}
+.edge-spotlight-results {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  overflow: hidden;
+  padding: 25px;
+  border: 1px solid var(--spotlight-line);
+  border-radius: 8px;
+  background: var(--surface-1);
+  align-self: center;
+}
+.edge-spotlight-orbits {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  stroke: var(--spotlight-gold);
+  stroke-width: 0.6;
+  opacity: 0.09;
+  z-index: -1;
+}
+.edge-spotlight-result-label {
+  color: var(--text-muted);
+  font:
+    8px/1.8 Consolas,
+    monospace;
+  letter-spacing: 0.06em;
+  margin-bottom: 25px;
+}
+.edge-spotlight-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.edge-spotlight-metrics strong {
+  display: block;
+  color: var(--text-strong);
+  font-size: 45px;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.edge-spotlight-metrics .edge-spotlight-gains {
+  color: var(--spotlight-gold);
+  font-size: 53px;
+}
+.edge-spotlight-metrics span {
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  display: block;
+}
+.edge-spotlight-milestone {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border-top: 1px solid var(--spotlight-line);
+  border-bottom: 1px solid var(--spotlight-line);
+  margin-top: 25px;
+  padding-block: 16px;
+}
+.edge-spotlight-milestone > span {
+  color: var(--spotlight-gold);
+  font:
+    10px Consolas,
+    monospace;
+  white-space: nowrap;
+}
+.edge-spotlight-milestone p {
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+.edge-spotlight-attribution {
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin-top: 15px;
+}
+@media (prefers-color-scheme: dark) {
+  .edge-spotlight {
+    --spotlight-gold: #dec18a;
+    --spotlight-soft: #24251f;
+    --spotlight-line: #514733;
+    --spotlight-button-ink: #111b2b;
+  }
+}
+@media (max-width: 1050px) {
+  .edge-spotlight {
+    gap: 25px;
+    padding: 28px;
+    grid-template-columns: 1.1fr 1fr;
+  }
+  .edge-spotlight-results {
+    padding: 20px;
+  }
+  .edge-spotlight-metrics {
+    gap: 15px;
+  }
+  .edge-spotlight-metrics .edge-spotlight-gains {
+    font-size: 43px;
+  }
+  .edge-spotlight-metrics strong {
+    font-size: 38px;
+  }
+}
+@media (max-width: 720px) {
+  .edge-spotlight {
+    grid-template-columns: 1fr;
+    gap: 27px;
+    padding: 25px 21px;
+  }
+  .edge-spotlight-eyebrow {
+    font-size: 9px;
+    margin-bottom: 18px;
+  }
+  .edge-spotlight h3 {
+    font-size: 35px;
+  }
+  .edge-spotlight-lead {
+    font-size: 19px;
+  }
+  .edge-spotlight-description {
+    font-size: 13px;
+  }
+  .edge-spotlight-cta {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .edge-spotlight-preview {
+    font-size: 9px;
+  }
+  .edge-spotlight-results {
+    padding: 19px 16px;
+  }
+  .edge-spotlight-result-label {
+    font-size: 7px;
+    margin-bottom: 20px;
+  }
+  .edge-spotlight-metrics {
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .edge-spotlight-metrics .edge-spotlight-gains {
+    font-size: 39px;
+  }
+  .edge-spotlight-metrics strong {
+    font-size: 35px;
+  }
+  .edge-spotlight-metrics span {
+    font-size: 10px;
+  }
+  .edge-spotlight-milestone {
+    gap: 13px;
+    margin-top: 20px;
+  }
+}
+
+/* Keep the universe present from the hero to the footer, below the content. */
+.portfolio-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+.starfield-shell:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 5% 25%, #4876c508, transparent 45%),
+    radial-gradient(ellipse at 95% 80%, #b38e4408, transparent 40%);
+}
+.portfolio-shell > main,
+.portfolio-shell > .site-footer {
+  position: relative;
+  z-index: 1;
+}
+.starfield-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 120px;
+  min-height: 36px;
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+  padding: 8px 10px;
+  background: var(--surface-1);
+  color: var(--text-muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+.starfield-toggle svg {
+  width: 12px;
+  height: 12px;
+}
+.starfield-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.space-interlude {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  align-items: center;
+  gap: 55px;
+  padding-block: 22px;
+  border-block: 1px solid var(--card-border);
+}
+.space-interlude .interlude-planet {
+  height: 220px;
+}
+.space-interlude figcaption {
+  max-width: 510px;
+  padding-block: 20px;
+}
+.space-interlude-eyebrow {
+  display: block;
+  color: var(--text-muted);
+  font:
+    9px Consolas,
+    monospace;
+  letter-spacing: 0.12em;
+  margin-bottom: 13px;
+}
+.space-interlude strong {
+  display: block;
+  font-size: clamp(22px, 2.5vw, 29px);
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  color: var(--text-strong);
+}
+.space-interlude p {
+  margin-top: 13px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 460px;
+}
+.space-interlude-coordinates {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  color: var(--text-muted);
+  font:
+    8px Consolas,
+    monospace;
+  letter-spacing: 0.06em;
+}
+.space-interlude-coordinates i {
+  width: 45px;
+  height: 1px;
+  background: var(--card-border);
+}
+.contact-section {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  gap: 40px;
+  text-align: left;
+}
+.contact-section .eyebrow,
+.contact-section .social-links {
+  justify-content: start;
+}
+.contact-copy {
+  min-width: 0;
+}
+.contact-orbit {
+  min-width: 0;
+}
+.contact-orbit .contact-star {
+  height: 300px;
+}
+@media (prefers-color-scheme: dark) {
+  .starfield-shell:before {
+    background:
+      radial-gradient(ellipse at 5% 25%, #4876c511, transparent 45%),
+      radial-gradient(ellipse at 95% 80%, #b38e440c, transparent 40%);
+  }
+}
+@media (max-width: 1050px) {
+  .nav-links {
+    gap: 18px;
+  }
+  .starfield-toggle {
+    width: 110px;
+  }
+  .space-interlude {
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+  }
+  .space-interlude .interlude-planet {
+    height: 200px;
+  }
+  .contact-orbit .contact-star {
+    height: 250px;
+  }
+}
+@media (max-width: 720px) {
+  .nav-links {
+    gap: 3px;
+  }
+  .starfield-toggle {
+    width: 100%;
+    justify-content: start;
+    min-height: 44px;
+    padding: 12px;
+    margin-top: 4px;
+    font-size: 12px;
+  }
+  .space-interlude {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-block: 15px 25px;
+  }
+  .space-interlude .interlude-planet {
+    width: min(280px, 100%);
+    height: 200px;
+    margin-inline: auto;
+  }
+  .space-interlude figcaption {
+    padding: 12px 0;
+    text-align: center;
+  }
+  .space-interlude p {
+    font-size: 12px;
+  }
+  .space-interlude-coordinates {
+    justify-content: center;
+    font-size: 7px;
+    gap: 10px;
+  }
+  .space-interlude-coordinates i {
+    width: 22px;
+  }
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: center;
+  }
+  .contact-section .eyebrow,
+  .contact-section .social-links {
+    justify-content: center;
+  }
+  .contact-orbit .contact-star {
+    height: 200px;
+  }
+}
+
+.starfield-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+.starfield-shell > :not(#bg-particles) {
+  position: relative;
+  z-index: 1;
 }

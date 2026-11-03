@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FiArrowUpRight, FiMenu, FiX } from "react-icons/fi";
+import { StarfieldToggle } from "./AmbientSpaceProvider";
 const links = [
   { href: "#experience", label: "Experience" },
   { href: "#featured-projects", label: "Projects" },
@@ -35,6 +36,7 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
+          <StarfieldToggle />
           <a
             className="nav-resume"
             href="#resume"

@@ -1,107 +1,115 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { animateParticleCanvas, seededRandom } from "@/lib/particleCanvas";
 
-// Bound the field to the hero; pause offscreen and honor motion preferences.
-export default function BackgroundParticles() {
+// One viewport-sized field follows the whole homepage. It never allocates a
+// document-height canvas, and shares the same visibility/motion lifecycle as
+// the local space objects.
+export default function BackgroundParticles({
+  paused = false,
+}: {
+  paused?: boolean;
+}) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const phase = useRef(0);
   useEffect(() => {
     const canvas = ref.current;
-    const context = canvas?.getContext("2d");
-    if (!canvas || !context) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const dark = window.matchMedia("(prefers-color-scheme: dark)");
-    let frame = 0,
-      width = 0,
-      height = 0,
-      lastTime = 0;
-    let visible = true;
-    let points: {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-    }[] = [];
-    function draw() {
-      if (!context) return;
-      context.clearRect(0, 0, width, height);
-      const color = dark.matches ? "119, 160, 211" : "40, 91, 160";
-      for (let i = 0; i < points.length; i++) {
-        const point = points[i];
-        context.fillStyle = `rgba(${color}, .42)`;
-        context.beginPath();
-        context.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
-        context.fill();
-        for (let j = i + 1; j < points.length; j++) {
-          const other = points[j];
-          const distance = Math.hypot(point.x - other.x, point.y - other.y);
-          if (distance < 130) {
-            context.strokeStyle = `rgba(${color}, ${0.13 * (1 - distance / 130)})`;
-            context.lineWidth = 0.6;
-            context.beginPath();
-            context.moveTo(point.x, point.y);
-            context.lineTo(other.x, other.y);
-            context.stroke();
+    if (!canvas) return;
+    const random = seededRandom(2207);
+    const stars = Array.from({ length: 96 }, () => ({
+      x: random(),
+      y: random(),
+      radius: 0.55 + random() * 1.05,
+      vx: (random() - 0.5) * 1.4,
+      vy: 0.2 + random() * 0.45,
+      phase: random() * Math.PI * 2,
+      bright: random() > 0.92,
+    }));
+    const updateTone = () => {
+      const region = scrollY < innerHeight * 0.6 ? "hero" : "content";
+      if (canvas.dataset.region !== region) canvas.dataset.region = region;
+    };
+    updateTone();
+    window.addEventListener("scroll", updateTone, { passive: true });
+    const stop = animateParticleCanvas(
+      canvas,
+      (ctx, frame) => {
+        const { width: w, height: h, delta, reducedMotion } = frame;
+        if (!w || !h) return;
+        if (!paused && !reducedMotion) phase.current += delta;
+        const t = reducedMotion ? 0 : phase.current;
+        const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+        const color = dark ? "143, 180, 229" : "42, 90, 154";
+        const count = w < 640 ? 36 : Math.min(96, Math.floor((w * h) / 14000));
+        ctx.clearRect(0, 0, w, h);
+        const positions = stars.slice(0, count).map((star) => ({
+          ...star,
+          x: (((star.x * w + t * star.vx) % w) + w) % w,
+          y: (star.y * h + t * star.vy) % h,
+        }));
+        positions.forEach((star, i) => {
+          const alpha = star.bright
+            ? 0.65
+            : 0.28 + Math.sin(t * 0.28 + star.phase) * 0.1;
+          ctx.fillStyle = `rgba(${color},${alpha})`;
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fill();
+          if (star.bright) {
+            ctx.strokeStyle = `rgba(${color},.28)`;
+            ctx.lineWidth = 0.55;
+            ctx.beginPath();
+            ctx.moveTo(star.x - 3, star.y);
+            ctx.lineTo(star.x + 3, star.y);
+            ctx.moveTo(star.x, star.y - 3);
+            ctx.lineTo(star.x, star.y + 3);
+            ctx.stroke();
+          }
+          for (let j = i + 1; j < positions.length; j++) {
+            const other = positions[j];
+            const distance = Math.hypot(star.x - other.x, star.y - other.y);
+            if (distance < 105) {
+              ctx.strokeStyle = `rgba(${color},${0.09 * (1 - distance / 105)})`;
+              ctx.lineWidth = 0.55;
+              ctx.beginPath();
+              ctx.moveTo(star.x, star.y);
+              ctx.lineTo(other.x, other.y);
+              ctx.stroke();
+            }
+          }
+        });
+        if (!reducedMotion) {
+          const cycle = (t + 21) % 24;
+          if (cycle < 2.4) {
+            const progress = cycle / 2.4;
+            const x = w * (-0.05 + progress * 1.1),
+              y = h * (0.08 + progress * 0.24);
+            const tail = w < 640 ? 48 : 110;
+            const alpha = Math.sin(progress * Math.PI) * 0.32;
+            const gradient = ctx.createLinearGradient(
+              x - tail,
+              y - tail * 0.25,
+              x,
+              y,
+            );
+            gradient.addColorStop(0, `rgba(${color},0)`);
+            gradient.addColorStop(1, `rgba(${color},${alpha})`);
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(x - tail, y - tail * 0.25);
+            ctx.lineTo(x, y);
+            ctx.stroke();
           }
         }
-      }
-    }
-    function tick(time: number) {
-      if (time - lastTime > 32) {
-        const delta = Math.min((time - lastTime) / 16.67, 3);
-        lastTime = time;
-        for (const p of points) {
-          p.x = (p.x + p.vx * delta + width) % width;
-          p.y = (p.y + p.vy * delta + height) % height;
-        }
-        draw();
-      }
-      frame = requestAnimationFrame(tick);
-    }
-    function start() {
-      cancelAnimationFrame(frame);
-      lastTime = 0;
-      draw();
-      if (!reduced.matches && visible && !document.hidden)
-        frame = requestAnimationFrame(tick);
-    }
-    function resize() {
-      if (!canvas || !context) return;
-      width = canvas.clientWidth;
-      height = canvas.clientHeight;
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = width * ratio;
-      canvas.height = height * ratio;
-      context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const count = width < 640 ? 28 : Math.min(85, Math.floor(width / 17));
-      points = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.16,
-        vy: (Math.random() - 0.5) * 0.12,
-        radius: 0.7 + Math.random() * 0.6,
-      }));
-      start();
-    }
-    const observer = new ResizeObserver(resize);
-    observer.observe(canvas);
-    const intersection = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      start();
-    });
-    intersection.observe(canvas);
-    reduced.addEventListener("change", start);
-    dark.addEventListener("change", start);
-    document.addEventListener("visibilitychange", start);
-    resize();
+      },
+      undefined,
+      paused,
+    );
     return () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
-      intersection.disconnect();
-      reduced.removeEventListener("change", start);
-      dark.removeEventListener("change", start);
-      document.removeEventListener("visibilitychange", start);
+      stop();
+      window.removeEventListener("scroll", updateTone);
     };
-  }, []);
+  }, [paused]);
   return <canvas ref={ref} id="bg-particles" aria-hidden="true" />;
 }

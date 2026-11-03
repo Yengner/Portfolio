@@ -38,7 +38,7 @@ export default function ParticleMark({
     const canvas = canvasRef.current;
     if (!canvas) return;
     let cancelled = false;
-    let stop = () => {};
+    let stop = () => { };
     const source = document.createElement("canvas");
     source.width = 900;
     source.height = text ? 160 : 900;
@@ -122,7 +122,7 @@ export default function ParticleMark({
           const mobile = matchMedia("(max-width: 640px)").matches;
           const count = Math.min(
             candidates.length,
-            text ? (mobile ? 950 : 1400) : mobile ? 1400 : 2200,
+            text ? (mobile ? 1000 : 1400) : mobile ? 2400 : 4200,
           );
           dots = Array.from({ length: count }, () => {
             const point = candidates[Math.floor(random() * candidates.length)];

@@ -12,6 +12,7 @@ import {
 import { Modal } from "@mantine/core";
 import { useState } from "react";
 import { Section } from "../utils";
+import EdgeFoundryCard from "./EdgeFoundryCard";
 
 const deepVisorImages = [
   {
@@ -40,8 +41,9 @@ export default function FeaturedProjects() {
       id="featured-projects"
       number="02"
       title="Built to solve real problems."
-      description="Independent products and academic engineering. A closer look at what I build, and how it works."
+      description="An independent market discovery, a product I founded, and hands-on software engineering."
     >
+      <EdgeFoundryCard />
       <div className="featured-grid">
         <article className="project-card">
           <button
@@ -187,61 +189,6 @@ export default function FeaturedProjects() {
                 <FiPlay aria-hidden="true" /> Walkthrough
               </a>
             </div>
-          </div>
-        </article>
-      </div>
-      <div className="secondary-heading">
-        <span className="small-label">MORE EXPLORATIONS</span>
-        <span className="heading-rule" />
-      </div>
-      <div className="secondary-grid">
-        <article className="secondary-card">
-          <div className="secondary-icon floorplan-icon" aria-hidden="true">
-            ⌗
-          </div>
-          <div>
-            <span className="mono">COMPUTER VISION</span>
-            <h3>FloorPlan Project</h3>
-            <p>
-              Detecting and segmenting architectural elements in floor plans.
-            </p>
-            <ul className="tags">
-              <li>Python</li>
-              <li>Detectron2</li>
-            </ul>
-            <a
-              className="text-link"
-              href="https://github.com/Yengner/FloorPlan-Project"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Explore project <FiArrowUpRight aria-hidden="true" />
-            </a>
-          </div>
-        </article>
-        <article className="secondary-card">
-          <div className="secondary-icon" aria-hidden="true">
-            ↗
-          </div>
-          <div>
-            <span className="mono">PERSONAL FINANCE</span>
-            <h3>CapitalBlend</h3>
-            <p>
-              A Next.js finance dashboard for budgeting, transactions, and
-              charts.
-            </p>
-            <ul className="tags">
-              <li>Next.js</li>
-              <li>TypeScript</li>
-            </ul>
-            <a
-              className="text-link"
-              href="https://github.com/Yengner/CapitalBlend"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Explore project <FiArrowUpRight aria-hidden="true" />
-            </a>
           </div>
         </article>
       </div>

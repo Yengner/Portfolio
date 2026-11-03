@@ -1,0 +1,1414 @@
+.page {
+  --gold: #8b641f;
+  --gold-soft: #f3ead8;
+  --gold-line: #d7bd88;
+  --chart-slate: #66778e;
+  --plot-shade: #b28a3510;
+  background: transparent;
+  color: var(--text);
+  overflow: clip;
+}
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gold: #dec18a;
+    --gold-soft: #29271f;
+    --gold-line: #6f5a35;
+    --chart-slate: #a1afc4;
+    --plot-shade: #d9b5690b;
+  }
+}
+.page [data-reveal] {
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.page [data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.topbar {
+  border-bottom: 1px solid var(--card-border);
+}
+.topbarInner {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 12px;
+  color: var(--text-strong);
+}
+.backLink:hover,
+.footer a:hover {
+  color: var(--gold);
+}
+.topbarLabel,
+.footer > span {
+  font:
+    9px Consolas,
+    monospace;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.topbarInner i,
+.footer i {
+  font-style: normal;
+  padding-inline: 10px;
+  color: var(--gold);
+}
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font:
+    10px/1.7 Consolas,
+    monospace;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.kicker > span:not(.goldDot) {
+  color: var(--gold);
+}
+.goldDot,
+.blueDot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.blueDot {
+  background: var(--accent);
+}
+.hero {
+  position: relative;
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 55px;
+  align-items: center;
+  padding-block: 90px 70px;
+}
+.heroCopy {
+  position: relative;
+  z-index: 1;
+}
+.title {
+  font-size: clamp(55px, 6.5vw, 88px);
+  letter-spacing: -0.065em;
+  line-height: 1;
+  font-weight: 600;
+  margin: 23px 0;
+}
+.page .title > span {
+  color: var(--gold);
+}
+.heroLead {
+  font-size: clamp(21px, 2.4vw, 29px);
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+  max-width: 590px;
+  color: var(--text-strong);
+}
+.heroDescription {
+  max-width: 520px;
+  font-size: 14px;
+  line-height: 1.9;
+  margin-top: 22px;
+  color: var(--text-muted);
+}
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin-top: 29px;
+}
+.primaryLink,
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.primaryLink {
+  padding: 12px 18px;
+  border-radius: 5px;
+  background: var(--text-strong);
+  color: var(--background);
+}
+.primaryLink:hover {
+  opacity: 0.85;
+}
+.secondaryLink {
+  color: var(--text-strong);
+}
+.secondaryLink:hover {
+  color: var(--gold);
+}
+.techList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 25px 0 0;
+  padding: 0;
+}
+.techList li {
+  font:
+    9px Consolas,
+    monospace;
+  border: 1px solid var(--card-border);
+  color: var(--text-muted);
+  padding: 6px 9px;
+  border-radius: 4px;
+}
+.heroOrbit {
+  min-width: 0;
+  position: relative;
+}
+.orbitCaption {
+  display: block;
+  text-align: center;
+  font:
+    8px Consolas,
+    monospace;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-top: 14px;
+}
+.observations {
+  padding-block: 45px;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.metrics > div {
+  padding: 0 35px;
+  border-right: 1px solid var(--card-border);
+}
+.metrics > div:first-child {
+  padding-left: 0;
+}
+.metrics > div:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+.metrics strong {
+  display: block;
+  color: var(--gold);
+  font-size: clamp(43px, 5vw, 61px);
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.metrics .periodMetric {
+  font-size: clamp(29px, 3vw, 38px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.periodMetric > span {
+  display: inline-block;
+  font-size: 22px;
+  padding-left: 9px;
+  color: var(--text-muted);
+}
+.metrics h3 {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.8;
+}
+.observationNote {
+  font-size: 11px;
+  color: var(--text-muted);
+  max-width: 890px;
+  line-height: 1.9;
+  margin-top: 27px;
+}
+.section {
+  padding-block: 88px;
+  border-bottom: 1px solid var(--card-border);
+}
+.sectionHeading {
+  max-width: 750px;
+  margin-bottom: 35px;
+}
+.sectionHeading h2 {
+  font-size: clamp(28px, 3.5vw, 43px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  margin-top: 17px;
+}
+.sectionIntro {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  max-width: 650px;
+  margin-top: 17px;
+}
+.discoveryGrid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 70px;
+  align-items: start;
+}
+.narrative {
+  max-width: 610px;
+  display: grid;
+  gap: 19px;
+  font-size: 14px;
+  line-height: 1.95;
+}
+.narrative strong {
+  color: var(--text-strong);
+  font-weight: 500;
+}
+.narrative code {
+  font-size: 11px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--card-border);
+  color: var(--text-strong);
+}
+.referenceCard {
+  padding: 25px;
+  border: 1px solid var(--card-border);
+  border-radius: 9px;
+  background: var(--surface-1);
+}
+.referenceCard .kicker {
+  font-size: 8px;
+  margin-bottom: 20px;
+}
+.referenceCard > div {
+  display: flex;
+  gap: 14px;
+  padding-block: 16px;
+  border-top: 1px solid var(--card-border);
+}
+.referenceCard > div > span {
+  color: var(--gold);
+  font:
+    10px Consolas,
+    monospace;
+  padding-top: 3px;
+}
+.referenceCard strong {
+  display: block;
+  color: var(--text-strong);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.referenceCard p {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 60px;
+}
+.timeline article {
+  position: relative;
+  padding: 27px 25px 0 0;
+  border-top: 1px solid var(--gold-line);
+}
+.timelineDot {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--background);
+  border: 1px solid var(--gold-line);
+  color: var(--gold);
+  font:
+    9px Consolas,
+    monospace;
+}
+.timelineDate {
+  color: var(--gold);
+  font:
+    9px/1.6 Consolas,
+    monospace;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.timeline h3 {
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.timeline article > p:last-child {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.chart {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 29px;
+  background: var(--surface-1);
+}
+.chartTop {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.chartTop .kicker {
+  font-size: 8px;
+  color: var(--gold);
+}
+.chartTop h3 {
+  font-size: 19px;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  margin-top: 8px;
+}
+.illustrative {
+  flex-shrink: 0;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-line);
+  color: var(--gold);
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 10px;
+}
+.chartDescription {
+  max-width: 680px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.9;
+  margin-top: 12px;
+}
+.chartLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 25px;
+  padding-block: 24px;
+}
+.chartLegend label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  min-height: 30px;
+}
+.chartLegend input {
+  width: 13px;
+  height: 13px;
+  accent-color: var(--gold);
+}
+.chartLegend label > span {
+  width: 14px;
+  height: 2px;
+  display: inline-block;
+}
+.slate {
+  background: var(--chart-slate);
+}
+.gold {
+  background: var(--gold);
+}
+.blue {
+  background: var(--accent);
+}
+.chartEvents {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+.chartEvents span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.plot {
+  height: 275px;
+  overflow: hidden;
+}
+.plot svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.plot path,
+.plot line {
+  vector-effect: non-scaling-stroke;
+}
+.maintenanceShade {
+  fill: var(--plot-shade);
+}
+.gridLine {
+  stroke: var(--card-border);
+  stroke-width: 0.6;
+}
+.maintenanceLine {
+  stroke: var(--gold-line);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+.settlementLine {
+  stroke: var(--accent);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+  opacity: 0.5;
+}
+.futuresPath path {
+  stroke: var(--chart-slate);
+  fill: none;
+  stroke-width: 1.8;
+}
+.indexPath {
+  stroke: var(--gold);
+  stroke-width: 2.2;
+  fill: none;
+}
+.openingPath {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.scrubLine {
+  stroke: var(--text-subtle);
+  stroke-width: 0.8;
+  opacity: 0.6;
+}
+.chartPoint {
+  fill: var(--gold);
+}
+.chartAxis {
+  position: relative;
+  height: 24px;
+  margin-top: 10px;
+  color: var(--text-muted);
+  font:
+    10px Consolas,
+    monospace;
+}
+.chartAxis span {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.chartAxis span:first-child {
+  transform: none;
+}
+.chartAxis span:last-child {
+  transform: translateX(-100%);
+}
+.chartAxisNote {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 9px;
+}
+.scrubber {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-strong);
+}
+.scrubber output {
+  color: var(--gold);
+  font:
+    11px Consolas,
+    monospace;
+}
+.scrubber input {
+  width: 100%;
+  grid-column: 1/-1;
+  accent-color: var(--gold);
+  height: 28px;
+  cursor: ew-resize;
+}
+.scrubber input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.chartCaption {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  align-items: start;
+  gap: 17px;
+  min-height: 75px;
+  padding: 18px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  margin-top: 14px;
+}
+.chartCaption strong {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-strong);
+  line-height: 1.7;
+}
+.chartCaption > span {
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.9;
+}
+.gapNotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  margin-top: 32px;
+  align-items: start;
+}
+.formula {
+  border-left: 2px solid var(--gold-line);
+  padding: 8px 0 8px 20px;
+}
+.formula .kicker {
+  font-size: 8px;
+}
+.formula > p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+  color: var(--text-strong);
+  font:
+    13px/1.9 Consolas,
+    monospace;
+}
+.formula strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+.gapNotes h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 9px;
+}
+.gapNotes > div:last-child p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+.gapNotes .methodNote {
+  margin-top: 13px;
+}
+.changeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--card-border);
+  border-radius: 9px;
+  overflow: hidden;
+  background: var(--surface-1);
+}
+.changeGrid article {
+  padding: 26px;
+  border-right: 1px solid var(--card-border);
+}
+.changeGrid article:last-child {
+  border-right: 0;
+}
+.changeLabel {
+  font:
+    9px Consolas,
+    monospace;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.changeGrid h3 {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  margin-bottom: 11px;
+}
+.changeGrid p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.changeMilestone {
+  background: var(--surface-2);
+}
+.changeMilestone .changeLabel {
+  color: var(--gold);
+}
+.beforePattern,
+.afterPattern,
+.breakSymbol {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.beforePattern i {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.65;
+}
+.afterPattern span {
+  height: 1px;
+  width: 38px;
+  background: var(--text-subtle);
+  opacity: 0.5;
+}
+.breakSymbol > span {
+  height: 1px;
+  width: 38px;
+  background: var(--gold-line);
+}
+.breakSymbol > svg {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+  margin-inline: 8px;
+}
+.changeNote {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-top: 16px;
+  max-width: 850px;
+}
+.takeaway {
+  max-width: 870px;
+  margin: 40px auto 0;
+  text-align: center;
+}
+.takeaway .kicker {
+  justify-content: center;
+  font-size: 9px;
+  color: var(--gold);
+}
+.takeaway > p {
+  font-size: clamp(20px, 2.5vw, 27px);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-strong);
+  letter-spacing: -0.03em;
+  margin-top: 15px;
+}
+.researchLayers {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 22px;
+  margin-bottom: 35px;
+  align-items: center;
+}
+.researchLayers > div {
+  align-self: start;
+}
+.researchLayers > svg {
+  width: 16px;
+  color: var(--gold-line);
+}
+.researchLayers span {
+  font:
+    8px/1.7 Consolas,
+    monospace;
+  color: var(--gold);
+}
+.researchLayers strong {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  display: block;
+  color: var(--text-strong);
+  margin: 9px 0 6px;
+}
+.researchLayers p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+.architecture {
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 27px;
+  background: var(--surface-1);
+}
+.architectureHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.architectureHeading h3 {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.architectureHeading > span {
+  font:
+    8px Consolas,
+    monospace;
+  color: var(--text-muted);
+}
+.architectureNodes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 28px 0 0;
+  padding: 0;
+  gap: 10px;
+}
+.architectureNodes li {
+  position: relative;
+  min-width: 0;
+  border: 1px solid var(--card-border);
+  padding: 15px 10px;
+  background: var(--background);
+  border-radius: 5px;
+}
+.architectureNodes li:after {
+  content: "→";
+  position: absolute;
+  right: -10px;
+  top: 44%;
+  color: var(--gold);
+  font-size: 10px;
+  z-index: 1;
+}
+.architectureNodes li:last-child:after {
+  content: none;
+}
+.architectureNodes svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.architectureNodes strong {
+  display: block;
+  color: var(--text-strong);
+  font-size: 10px;
+  line-height: 1.7;
+  font-weight: 500;
+}
+.architectureNodes li > span {
+  display: block;
+  font-size: 9px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 5px;
+}
+.architecture figcaption {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding-top: 19px;
+  margin-top: 20px;
+  border-top: 1px solid var(--card-border);
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+.architecture figcaption svg {
+  color: var(--gold);
+}
+.engineeringCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  margin-top: 35px;
+}
+.engineeringCards svg {
+  width: 19px;
+  height: 19px;
+  color: var(--gold);
+  margin-bottom: 13px;
+}
+.engineeringCards h3 {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 9px;
+}
+.engineeringCards p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+.implementationNote {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+  padding: 15px 18px;
+  margin-top: 28px;
+}
+.implementationNote svg {
+  color: var(--gold);
+  width: 14px;
+  margin-top: 4px;
+}
+.implementationNote p {
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.9;
+}
+.lessons {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  align-items: center;
+  gap: 70px;
+  padding-block: 90px;
+  border-bottom: 1px solid var(--card-border);
+}
+.lessons h2 {
+  font-size: clamp(28px, 3.5vw, 42px);
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  margin: 17px 0 22px;
+  max-width: 600px;
+}
+.lessons p:not(.kicker) {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.95;
+  max-width: 670px;
+  margin-top: 15px;
+}
+.lessonTags {
+  display: flex;
+  gap: 8px 17px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  font-size: 11px;
+  color: var(--gold);
+}
+.evidence {
+  padding-block: 38px 45px;
+}
+.evidence h2 {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-bottom: 12px;
+}
+.evidence p {
+  max-width: 850px;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.9;
+  margin-top: 8px;
+}
+.evidence > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 25px;
+  margin-top: 20px;
+}
+.evidence a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  font-size: 11px;
+  color: var(--text-strong);
+}
+.evidence a:hover {
+  color: var(--gold);
+}
+.footer {
+  border-top: 1px solid var(--card-border);
+  min-height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 12px;
+  color: var(--text-strong);
+}
+@media (max-width: 1050px) {
+  .hero {
+    gap: 20px;
+    grid-template-columns: 1.4fr 1fr;
+    padding-top: 70px;
+  }
+  .title {
+    font-size: 65px;
+  }
+  .heroLead {
+    font-size: 24px;
+  }
+  .periodMetric > span {
+    display: block;
+    padding: 9px 0 0;
+    font-size: 17px;
+  }
+  .discoveryGrid {
+    gap: 35px;
+  }
+  .timeline article {
+    padding-right: 17px;
+  }
+  .architectureNodes {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+  .architectureNodes li {
+    display: grid;
+    grid-template-columns: 23px 1fr;
+    align-items: center;
+    gap: 3px 10px;
+    padding: 14px;
+  }
+  .architectureNodes svg {
+    grid-row: 1/3;
+    margin: 0;
+  }
+  .architectureNodes li > span {
+    grid-column: 2;
+    margin: 0;
+  }
+  .architectureNodes li:after {
+    content: "↓";
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: -19px;
+  }
+  .architectureNodes li:last-child:after {
+    content: none;
+  }
+  .architectureNodes strong {
+    font-size: 11px;
+  }
+  .architectureNodes li > span {
+    font-size: 10px;
+  }
+  .lessons {
+    gap: 35px;
+  }
+}
+@media (max-width: 720px) {
+  .topbarInner {
+    min-height: 68px;
+  }
+  .topbarLabel {
+    font-size: 7px;
+    letter-spacing: 0.05em;
+    text-align: right;
+    max-width: 160px;
+    line-height: 1.8;
+  }
+  .topbarInner i {
+    padding-inline: 5px;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 25px;
+    padding-block: 48px 35px;
+    min-height: auto;
+  }
+  .title {
+    font-size: clamp(45px, 11.8vw, 74px);
+    margin-block: 22px;
+  }
+  .heroLead {
+    font-size: 23px;
+    line-height: 1.5;
+  }
+  .heroDescription {
+    font-size: 13px;
+    margin-top: 19px;
+  }
+  .heroActions {
+    gap: 12px 18px;
+  }
+  .primaryLink,
+  .secondaryLink {
+    font-size: 11px;
+    gap: 10px;
+  }
+  .techList {
+    margin-top: 20px;
+  }
+  .heroOrbit {
+    align-self: center;
+    width: min(340px, 100%);
+  }
+  .orbitCaption {
+    font-size: 7px;
+    margin-top: 0;
+  }
+  .observations {
+    padding-block: 30px;
+  }
+  .metrics {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .metrics > div,
+  .metrics > div:first-child,
+  .metrics > div:last-child {
+    border-right: 0;
+    border-bottom: 1px solid var(--card-border);
+    padding: 0 0 24px;
+    display: grid;
+    grid-template-columns: 105px 1fr;
+    align-items: center;
+    gap: 15px;
+  }
+  .metrics > div:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .metrics strong {
+    font-size: 39px;
+    margin-bottom: 0;
+  }
+  .metrics .periodMetric {
+    font-size: 24px;
+  }
+  .periodMetric > span {
+    font-size: 16px;
+    padding-top: 5px;
+  }
+  .metrics h3 {
+    font-size: 11px;
+    line-height: 1.9;
+  }
+  .observationNote {
+    font-size: 10px;
+    margin-top: 23px;
+  }
+  .section {
+    padding-block: 55px;
+  }
+  .sectionHeading {
+    margin-bottom: 27px;
+  }
+  .sectionHeading h2 {
+    font-size: 29px;
+  }
+  .sectionIntro {
+    font-size: 13px;
+    margin-top: 15px;
+  }
+  .discoveryGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .narrative {
+    font-size: 13px;
+    gap: 17px;
+  }
+  .referenceCard {
+    padding: 22px;
+  }
+  .timeline {
+    grid-template-columns: 1fr;
+    margin-top: 35px;
+    gap: 0;
+  }
+  .timeline article {
+    border-top: 0;
+    border-left: 1px solid var(--gold-line);
+    padding: 0 0 28px 28px;
+    margin-left: 11px;
+  }
+  .timeline article:last-child {
+    border-left-color: transparent;
+    padding-bottom: 0;
+  }
+  .timelineDot {
+    top: 0;
+    left: -12px;
+  }
+  .timelineDate {
+    margin-bottom: 8px;
+    padding-top: 2px;
+  }
+  .timeline h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .chart {
+    padding: 20px 15px;
+    border-radius: 8px;
+  }
+  .chartTop {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .chartTop h3 {
+    font-size: 18px;
+  }
+  .chartDescription {
+    font-size: 11px;
+  }
+  .chartLegend {
+    gap: 5px 16px;
+    padding-block: 20px;
+  }
+  .chartLegend label {
+    min-height: 35px;
+    font-size: 10px;
+  }
+  .chartEvents {
+    font-size: 9px;
+    gap: 8px;
+    flex-direction: column;
+  }
+  .plot {
+    height: 230px;
+  }
+  .chartAxis {
+    font-size: 9px;
+  }
+  .chartAxisNote {
+    font-size: 8px;
+  }
+  .chartCaption {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 14px;
+    min-height: 145px;
+  }
+  .chartCaption strong {
+    font-size: 12px;
+  }
+  .chartCaption > span {
+    font-size: 11px;
+  }
+  .gapNotes {
+    grid-template-columns: 1fr;
+    gap: 27px;
+    margin-top: 28px;
+  }
+  .formula {
+    padding-left: 15px;
+  }
+  .formula > p {
+    font-size: 11px;
+  }
+  .gapNotes > div:last-child p {
+    font-size: 12px;
+  }
+  .changeGrid {
+    grid-template-columns: 1fr;
+  }
+  .changeGrid article {
+    padding: 23px;
+    border-right: 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .changeGrid article:last-child {
+    border-bottom: 0;
+  }
+  .beforePattern,
+  .afterPattern,
+  .breakSymbol {
+    height: 60px;
+  }
+  .changeGrid h3 {
+    font-size: 18px;
+  }
+  .changeNote {
+    font-size: 10px;
+  }
+  .takeaway {
+    text-align: left;
+    margin-top: 30px;
+  }
+  .takeaway .kicker {
+    justify-content: start;
+  }
+  .takeaway > p {
+    font-size: 22px;
+  }
+  .researchLayers {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 28px;
+  }
+  .researchLayers > svg {
+    transform: rotate(90deg);
+    margin-left: 0;
+  }
+  .researchLayers span {
+    font-size: 9px;
+  }
+  .researchLayers strong {
+    font-size: 15px;
+  }
+  .architecture {
+    padding: 20px 16px;
+  }
+  .architectureHeading {
+    flex-direction: column;
+    align-items: start;
+    gap: 9px;
+  }
+  .architectureHeading h3 {
+    font-size: 17px;
+  }
+  .architectureHeading > span {
+    font-size: 7px;
+  }
+  .architectureNodes {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    margin-top: 22px;
+  }
+  .architectureNodes li {
+    display: grid;
+    grid-template-columns: 23px 1fr;
+    align-items: center;
+    gap: 3px 10px;
+    padding: 14px;
+  }
+  .architectureNodes svg {
+    grid-row: 1/3;
+    margin: 0;
+  }
+  .architectureNodes strong {
+    font-size: 12px;
+  }
+  .architectureNodes li > span {
+    grid-column: 2;
+    margin: 0;
+    font-size: 11px;
+  }
+  .architectureNodes li:after,
+  .architectureNodes li:nth-child(4):after {
+    content: "↓";
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: -19px;
+  }
+  .architectureNodes li:nth-child(4):before,
+  .architectureNodes li:last-child:after {
+    content: none;
+  }
+  .architecture figcaption {
+    font-size: 10px;
+    align-items: start;
+  }
+  .architecture figcaption svg {
+    margin-top: 3px;
+  }
+  .engineeringCards {
+    grid-template-columns: 1fr;
+    gap: 27px;
+    margin-top: 30px;
+  }
+  .engineeringCards h3 {
+    font-size: 16px;
+  }
+  .engineeringCards p {
+    font-size: 13px;
+  }
+  .implementationNote {
+    padding: 14px;
+    gap: 8px;
+  }
+  .implementationNote p {
+    font-size: 10px;
+  }
+  .lessons {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding-block: 55px 35px;
+  }
+  .lessons h2 {
+    font-size: 30px;
+  }
+  .lessons p:not(.kicker) {
+    font-size: 13px;
+  }
+  .evidence {
+    padding-block: 30px;
+  }
+  .evidence p {
+    font-size: 10px;
+  }
+  .evidence > div {
+    gap: 8px 18px;
+  }
+  .evidence a {
+    font-size: 10px;
+  }
+  .footer {
+    min-height: 110px;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 8px;
+    padding-block: 15px;
+  }
+  .footer > span {
+    font-size: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page [data-reveal],
+  .page [data-reveal="pending"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.topbarTools {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+@media (max-width: 720px) {
+  .topbarLabel {
+    display: none;
+  }
+  .topbarTools {
+    gap: 0;
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
+import SpaceInterlude from "./SpaceInterlude";
 import HeroClient from "./HeroClient";
 import Nav from "./Nav";
-import BackgroundParticles from "./BackgroundParticles";
 import ProjectsSection from "./portfolio/ProjectsSection";
 import ExperienceSection from "./portfolio/ExperienceSection";
 import EducationSection from "./portfolio/EducationSection";
@@ -10,17 +10,17 @@ import ContactSection from "./portfolio/ContactSection";
 import FeaturedProjects from "./portfolio/FeaturedProjects";
 export default function HomeClient() {
   return (
-    <>
+    <div className="portfolio-shell">
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <BackgroundParticles />
       <Nav />
       <main id="main-content">
         <HeroClient />
         <div className="content-sections">
           <ExperienceSection />
           <FeaturedProjects />
+          <SpaceInterlude />
           <ProjectsSection />
           <EducationSection />
           <ResumeSection />
@@ -34,6 +34,6 @@ export default function HomeClient() {
         <span>Designed with intent. Built by Yengner.</span>
         <a href="#hero">Back to top ↑</a>
       </footer>
-    </>
+    </div>
   );
 }

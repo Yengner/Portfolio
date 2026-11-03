@@ -6,6 +6,7 @@ import {
   mantineHtmlProps,
 } from "@mantine/core";
 import type { Metadata } from "next";
+import AmbientSpaceProvider from "@/components/AmbientSpaceProvider";
 export const metadata: Metadata = {
   title: "Yengner Bermudez | Backend & Infrastructure Engineer",
   description:
@@ -28,7 +29,9 @@ export default function RootLayout({
         <ColorSchemeScript defaultColorScheme="auto" />
       </head>
       <body>
-        <MantineProvider defaultColorScheme="auto">{children}</MantineProvider>
+        <MantineProvider defaultColorScheme="auto">
+          <AmbientSpaceProvider>{children}</AmbientSpaceProvider>
+        </MantineProvider>
       </body>
     </html>
   );

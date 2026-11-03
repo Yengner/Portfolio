@@ -1,0 +1,49 @@
+.spaceObject {
+  position: relative;
+  width: 100%;
+  height: 340px;
+}
+.spaceObject canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.orbitControl {
+  position: absolute;
+  right: 9px;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  background: var(--surface-1);
+  color: var(--text-muted);
+  display: grid;
+  place-items: center;
+}
+.orbitControl svg {
+  width: 12px;
+  height: 12px;
+}
+.pulsar {
+  height: 260px;
+}
+@media (max-width: 1050px) {
+  .spaceObject {
+    height: 280px;
+  }
+}
+@media (max-width: 720px) {
+  .spaceObject {
+    height: 240px;
+  }
+  .pulsar {
+    height: 190px;
+    width: min(260px, 100%);
+    margin-inline: auto;
+  }
+  .orbitControl {
+    width: 44px;
+    height: 44px;
+  }
+}
